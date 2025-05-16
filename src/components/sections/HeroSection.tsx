@@ -13,7 +13,7 @@ const HeroSection = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
         style={{
-          backgroundImage: "url('/public/images/restaurante.png')",
+          backgroundImage: "url('/images/restaurante.png')",
           filter: "blur(5px) brightness(0.4) sepia(0.3) hue-rotate(5deg)"
         }} 
       />

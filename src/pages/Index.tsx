@@ -1,9 +1,9 @@
-
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
 import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/sections/AboutSection";
+import BenefitsSection from "@/components/sections/BenefitsSection"; // ✅ Import da nova seção
 import OperationSection from "@/components/sections/OperationSection";
 import NumbersSection from "@/components/sections/NumbersSection";
 import InvestmentSection from "@/components/sections/InvestmentSection";
@@ -17,6 +17,7 @@ const Index = () => {
       
       <HeroSection />
       <AboutSection />
+      <BenefitsSection /> 
       <OperationSection />
       <NumbersSection />
       <InvestmentSection />
