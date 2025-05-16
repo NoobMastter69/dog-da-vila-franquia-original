@@ -1,9 +1,8 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 
 const NumbersSection = () => {
   return (
-    <section className="py-16 bg-gradient-to-r from-orange-600 to-orange-500 text-white">
+    <section id="sobre" className="py-16 bg-gradient-to-r from-orange-600 to-orange-500 text-white">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           Nossos números:

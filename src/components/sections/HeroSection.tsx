@@ -1,13 +1,19 @@
-
 import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
+  const scrollToFranchiseSection = () => {
+    const section = document.getElementById("contato");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="relative h-[500px] md:h-[600px] overflow-hidden">
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
         style={{
-          backgroundImage: "url('/images/restaurant-bg.jpg')",
+          backgroundImage: "url('/public/images/restaurante.png')",
           filter: "blur(5px) brightness(0.4) sepia(0.3) hue-rotate(5deg)"
         }} 
       />
@@ -21,7 +27,10 @@ const HeroSection = () => {
           Simplesmente Diferente
         </h1>
         <div className="mt-8 animate-fade-in">
-          <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-6 text-lg rounded-full">
+          <Button
+            className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-6 text-lg rounded-full"
+            onClick={scrollToFranchiseSection}
+          >
             Seja um Franqueado
           </Button>
         </div>
