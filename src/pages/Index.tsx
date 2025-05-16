@@ -3,8 +3,8 @@ import Footer from "@/components/Footer";
 import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
 import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/sections/AboutSection";
-import BenefitsSection from "@/components/sections/BenefitsSection"; // ✅ Import da nova seção
 import OperationSection from "@/components/sections/OperationSection";
+import BenefitsSection from "@/components/sections/BenefitsSection"; // ✅ Import da nova seção
 import NumbersSection from "@/components/sections/NumbersSection";
 import InvestmentSection from "@/components/sections/InvestmentSection";
 import ProductsGallerySection from "@/components/sections/ProductsGallerySection";
@@ -17,8 +17,8 @@ const Index = () => {
       
       <HeroSection />
       <AboutSection />
-      <BenefitsSection /> 
       <OperationSection />
+      <BenefitsSection /> 
       <NumbersSection />
       <InvestmentSection />
       <ProductsGallerySection />
