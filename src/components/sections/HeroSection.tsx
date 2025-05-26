@@ -9,7 +9,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative h-[500px] md:h-[600px] overflow-hidden">
+    <section id = "inicio" className="relative h-[500px] md:h-[600px] overflow-hidden">
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
         style={{

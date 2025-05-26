@@ -12,28 +12,28 @@ const NumbersSection = () => {
           <Card className="bg-black/20 border-none text-white shadow-lg">
             <CardContent className="pt-6">
               <p className="text-5xl font-bold mb-2">15%</p>
-              <p className="text-xl">Lucro livre mensal a partir de</p>
+              <p className="text-xl">Lucro livre mensal (apartir de)</p>
             </CardContent>
           </Card>
           
           <Card className="bg-black/20 border-none text-white shadow-lg">
             <CardContent className="pt-6">
               <p className="text-5xl font-bold mb-2">1-8</p>
-              <p className="text-xl">Pay Back de meses</p>
+              <p className="text-xl">Meses de Pay Back</p>
             </CardContent>
           </Card>
           
           <Card className="bg-black/20 border-none text-white shadow-lg">
             <CardContent className="pt-6">
               <p className="text-5xl font-bold mb-2">3</p>
-              <p className="text-xl">Unidades em operação</p>
+              <p className="text-xl">Unidades em Operação</p>
             </CardContent>
           </Card>
           
           <Card className="bg-black/20 border-none text-white shadow-lg">
             <CardContent className="pt-6">
               <p className="text-5xl font-bold mb-2">2012</p>
-              <p className="text-xl">Desde</p>
+              <p className="text-xl">Since</p>
             </CardContent>
           </Card>
         </div>

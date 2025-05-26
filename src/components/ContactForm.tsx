@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -10,28 +9,60 @@ const ContactForm = () => {
     whatsapp: '',
     email: ''
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form data submitted:', formData);
+    setIsSubmitting(true);
     
-    // Show success toast
-    toast({
-      title: "Formulário enviado!",
-      description: "Entraremos em contato em breve.",
-    });
-    
-    // Reset form
-    setFormData({
-      name: '',
-      whatsapp: '',
-      email: ''
-    });
+    try {
+      // Usando FormSubmit.co para enviar o formulário para seu email
+      const response = await fetch('https://formsubmit.co/edcarlosmegatrom@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          whatsapp: formData.whatsapp,
+          email: formData.email,
+          _subject: "Novo contato - Franquia"
+        })
+      });
+      
+      if (response.ok) {
+        // Show success toast
+        toast({
+          title: "Formulário enviado!",
+          description: "Entraremos em contato em breve.",
+        });
+        
+        // Reset form
+        setFormData({
+          name: '',
+          whatsapp: '',
+          email: ''
+        });
+      } else {
+        throw new Error('Falha ao enviar formulário');
+      }
+    } catch (error) {
+      console.error('Erro ao enviar formulário:', error);
+      toast({
+        title: "Erro ao enviar",
+        description: "Ocorreu um problema. Tente novamente.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -72,10 +103,11 @@ const ContactForm = () => {
       
       <div className="pt-2">
         <Button 
-          type="submit" 
+          type="submit"
           className="w-full bg-orange-500 hover:bg-orange-600 text-white py-6"
+          disabled={isSubmitting}
         >
-          Quero saber mais sobre a Franquia
+          {isSubmitting ? 'Enviando...' : 'Quero saber mais sobre a Franquia'}
         </Button>
       </div>
     </form>

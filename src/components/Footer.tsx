@@ -1,5 +1,4 @@
-
-import { MapPinIcon, PhoneIcon, MailIcon, FacebookIcon, InstagramIcon } from 'lucide-react';
+import { MapPinIcon, PhoneIcon, MailIcon, InstagramIcon } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -24,7 +23,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <PhoneIcon className="w-5 h-5 mr-2 text-orange-500" />
-                <span>(00) 00000-0000</span>
+                <span>(11) 91476-1414</span>
               </li>
               <li className="flex items-center">
                 <MailIcon className="w-5 h-5 mr-2 text-orange-500" />
@@ -37,10 +36,14 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4 text-orange-400">Siga-nos</h3>
             <div className="flex space-x-4">
-              <a href="#" className="bg-orange-500 p-2 rounded-full hover:bg-orange-600 transition-colors">
-                <FacebookIcon className="w-5 h-5" />
-              </a>
-              <a href="#" className="bg-orange-500 p-2 rounded-full hover:bg-orange-600 transition-colors">
+             
+              {/* Link do Instagram corrigido */}
+              <a 
+                href="https://www.instagram.com/dogdavilaofc/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="bg-orange-500 p-2 rounded-full hover:bg-orange-600 transition-colors"
+              >
                 <InstagramIcon className="w-5 h-5" />
               </a>
             </div>

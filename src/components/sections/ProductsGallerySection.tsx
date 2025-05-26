@@ -17,13 +17,14 @@ const ProductsGallerySection = () => {
 
         <Carousel className="w-full max-w-4xl mx-auto">
           <CarouselContent>
-            {[1, 2, 3, 4, 5].map((item) => (
+            {[1, 2, 3, 6].map((item) => (
               <CarouselItem key={item} className="md:basis-1/2 lg:basis-1/3">
                 <div className="p-1">
                   <Card className="overflow-hidden shadow-lg">
                     <CardContent className="p-0">
                       <img
                         src={`/images/produto${item}.png`}
+                    
                         alt={`Produto ${item}`}
                         className="w-full h-64 object-cover"
                       />

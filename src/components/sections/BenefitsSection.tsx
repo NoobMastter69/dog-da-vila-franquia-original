@@ -12,7 +12,7 @@ const BenefitsSection = () => {
           <div className="flex items-start space-x-4">
             <FaStore className="text-orange-500 text-3xl" />
             <div>
-              <h3 className="text-xl font-semibold">Modelo enxuto</h3>
+              <h3 className="text-xl font-semibold">Modelo Enxuto</h3>
               <p>Fácil de replicar e operar, ideal para começar rápido.</p>
             </div>
           </div>

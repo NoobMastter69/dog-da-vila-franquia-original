@@ -12,14 +12,14 @@ const Header = () => {
     <header className="bg-white shadow-md fixed top-0 w-full z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+       
           <div className="flex-shrink-0">
             <a href="#inicio" className="flex items-center">
               <img src="/images/logo.png" alt="Dog da Vila" className="h-14" />
             </a>
           </div>
 
-          {/* Navegação Desktop */}
+      
           <nav className="hidden md:flex space-x-8 items-center">
             <a href="#inicio" className="text-gray-800 hover:text-orange-500 font-medium">Início</a>
             <a href="#sobre" className="text-gray-800 hover:text-orange-500 font-medium">Sobre Nós</a>

@@ -10,7 +10,7 @@ const OperationSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           <div className="rounded-lg overflow-hidden shadow-xl order-2 md:order-1">
             <img 
-              src="/images/produto2.png" 
+              src="/images/produto6.png" 
               alt="Hot Dog Dog da Vila" 
               className="w-full h-auto object-cover"
             />
