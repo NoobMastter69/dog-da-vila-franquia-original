@@ -27,7 +27,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <MailIcon className="w-5 h-5 mr-2 text-orange-500" />
-                <span>contato@dogdavila.com.br</span>
+                <span> brunotizer@icloud.com</span>
               </li>
             </ul>
           </div>

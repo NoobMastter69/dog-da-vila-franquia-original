@@ -4,10 +4,14 @@ import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 
 const ContactForm = () => {
+  // 👇 COLE A SUA CHAVE DE ACESSO QUE VOCÊ COPIOU DO SITE AQUI 👇
+  const accessKey = 'b8499ac9-f910-41a2-a5fd-4cf112cdee4c';
+
   const [formData, setFormData] = useState({
     name: '',
     whatsapp: '',
-    email: ''
+    email: '',
+    subject: 'Novo contato - Franquia!' // Assunto do email
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -21,43 +25,44 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
+    // Adicionamos a chave de acesso ao objeto que será enviado
+    const dataToSend = { ...formData, access_key: accessKey };
+
     try {
-      // Usando FormSubmit.co para enviar o formulário para seu email
-      const response = await fetch('https://formsubmit.co/edcarlosmegatrom@gmail.com', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify({
-          name: formData.name,
-          whatsapp: formData.whatsapp,
-          email: formData.email,
-          _subject: "Novo contato - Franquia"
-        })
+        body: JSON.stringify(dataToSend)
       });
       
-      if (response.ok) {
-        // Show success toast
+      const result = await response.json();
+
+      if (result.success) {
+        // Mostra o toast de sucesso
         toast({
           title: "Formulário enviado!",
-          description: "Entraremos em contato em breve.",
+          description: "Obrigado pelo seu contato. Entraremos em contato em breve.",
         });
         
-        // Reset form
+        // Limpa o formulário (exceto o assunto)
         setFormData({
           name: '',
           whatsapp: '',
-          email: ''
+          email: '',
+          subject: 'Novo contato - Franquia!'
         });
       } else {
-        throw new Error('Falha ao enviar formulário');
+        console.error('Erro retornado pela API:', result);
+        throw new Error(result.message || 'Falha ao enviar o formulário.');
       }
     } catch (error) {
-      console.error('Erro ao enviar formulário:', error);
+      console.error('Erro na requisição:', error);
       toast({
         title: "Erro ao enviar",
-        description: "Ocorreu um problema. Tente novamente.",
+        description: "Ocorreu um problema inesperado. Por favor, tente novamente.",
         variant: "destructive"
       });
     } finally {
@@ -67,6 +72,7 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Os campos do formulário continuam os mesmos */}
       <div>
         <Input
           name="name"
