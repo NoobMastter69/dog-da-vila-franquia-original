@@ -26,7 +26,8 @@ const HeroSection = () => {
         <h1 className="text-2xl md:text-4xl text-white font-bold mb-6 animate-fade-in">
           Simplesmente Diferente
         </h1>
-        <div className="mt-8 animate-fade-in">
+        {/* Linha alterada abaixo: adicionado 'flex justify-center' */}
+        <div className="mt-8 animate-fade-in flex justify-center">
           <Button
             className="bg-orange-500 hover:bg-orange-600 text-white px-16 py-10 text-3xl rounded-full"
             onClick={scrollToFranchiseSection}

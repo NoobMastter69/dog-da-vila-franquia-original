@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
+// Adicionar importações para o componente Select do Shadcn
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const ContactForm = () => {
-  
   const accessKey = 'b8499ac9-f910-41a2-a5fd-4cf112cdee4c';
 
   const investmentOptions = [
@@ -19,16 +20,21 @@ const ContactForm = () => {
     name: '',
     whatsapp: '',
     email: '',
-    investment: '', 
-    subject: 'Novo contato - Franquia!' 
+    investment: '',
+    subject: 'Novo contato - Franquia!'
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  // handleChange para inputs normais
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  // Handler específico para a mudança de valor do Select do Shadcn
+  const handleInvestmentChange = (value: string) => {
+    setFormData(prev => ({ ...prev, investment: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -50,17 +56,15 @@ const ContactForm = () => {
       const result = await response.json();
 
       if (result.success) {
-        
         toast({
           title: "Formulário enviado!",
           description: "Obrigado pelo seu contato. Entraremos em contato em breve.",
         });
-
         setFormData({
           name: '',
           whatsapp: '',
           email: '',
-          investment: '', 
+          investment: '',
           subject: 'Novo contato - Franquia!'
         });
       } else {
@@ -85,7 +89,7 @@ const ContactForm = () => {
         <Input
           name="name"
           value={formData.name}
-          onChange={handleChange}
+          onChange={handleInputChange} // Usar handleInputChange
           placeholder="Seu Nome"
           className="w-full"
           required
@@ -96,7 +100,7 @@ const ContactForm = () => {
         <Input
           name="whatsapp"
           value={formData.whatsapp}
-          onChange={handleChange}
+          onChange={handleInputChange} // Usar handleInputChange
           placeholder="Seu WhatsApp (com DDD)"
           className="w-full"
           required
@@ -107,7 +111,7 @@ const ContactForm = () => {
         <Input
           name="email"
           value={formData.email}
-          onChange={handleChange}
+          onChange={handleInputChange} // Usar handleInputChange
           placeholder="Seu e-mail"
           type="email"
           className="w-full"
@@ -115,27 +119,27 @@ const ContactForm = () => {
         />
       </div>
 
-      
       <div>
-        <label htmlFor="investment" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="investment-label" className="block text-sm font-medium text-gray-700 mb-1">
           Qual é o investimento que você quer fazer no momento?
         </label>
-        
-        <select
-          id="investment"
-          name="investment"
+        {/* Substituído o select nativo pelo componente Select do Shadcn */}
+        <Select
           value={formData.investment}
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500" // Estilização básica, ajuste conforme seus componentes de UI
+          onValueChange={handleInvestmentChange} // Usar handler específico
           required
         >
-          <option value="" disabled>Selecione uma faixa de investimento</option>
-          {investmentOptions.map((option, index) => (
-            <option key={index} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
+          <SelectTrigger id="investment-label" className="w-full">
+            <SelectValue placeholder="Selecione uma faixa de investimento" />
+          </SelectTrigger>
+          <SelectContent>
+            {investmentOptions.map((option, index) => (
+              <SelectItem key={index} value={option}>
+                {option}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       <div className="pt-2">

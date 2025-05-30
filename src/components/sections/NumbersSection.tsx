@@ -8,13 +8,13 @@ const NumbersSection = () => {
           Nossos números:
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-          <Card className="bg-black/20 border-none text-white shadow-lg">
-            <CardContent className="pt-6">
-              <p className="text-5xl font-bold mb-2">15%</p>
-              <p className="text-xl">Lucro livre mensal (a partir de)</p>
-            </CardContent>
-          </Card>
+        {/* Classes do grid alteradas:
+          Antes: grid-cols-1 md:grid-cols-2 lg:grid-cols-4
+          Agora: grid-cols-1 md:grid-cols-3 
+          (lg:grid-cols-3 é implícito se md:grid-cols-3 for definido e lg não o sobrescrever para outro valor)
+        */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          {/* O Card de "Lucro Livre Mensal" foi removido daqui */}
           
           <Card className="bg-black/20 border-none text-white shadow-lg">
             <CardContent className="pt-6">
