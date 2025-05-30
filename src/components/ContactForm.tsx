@@ -4,19 +4,29 @@ import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 
 const ContactForm = () => {
-  // 👇 COLE A SUA CHAVE DE ACESSO QUE VOCÊ COPIOU DO SITE AQUI 👇
+  
   const accessKey = 'b8499ac9-f910-41a2-a5fd-4cf112cdee4c';
+
+  const investmentOptions = [
+    "Até R$50.000",
+    "R$50.000 - R$100.000",
+    "R$100.000 - R$200.000",
+    "Acima de R$200.000",
+    "Prefiro discutir em contato"
+  ];
 
   const [formData, setFormData] = useState({
     name: '',
     whatsapp: '',
     email: '',
-    subject: 'Novo contato - Franquia!' // Assunto do email
+    investment: '', 
+    subject: 'Novo contato - Franquia!' 
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
@@ -24,8 +34,7 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Adicionamos a chave de acesso ao objeto que será enviado
+
     const dataToSend = { ...formData, access_key: accessKey };
 
     try {
@@ -37,21 +46,21 @@ const ContactForm = () => {
         },
         body: JSON.stringify(dataToSend)
       });
-      
+
       const result = await response.json();
 
       if (result.success) {
-        // Mostra o toast de sucesso
+        
         toast({
           title: "Formulário enviado!",
           description: "Obrigado pelo seu contato. Entraremos em contato em breve.",
         });
-        
-        // Limpa o formulário (exceto o assunto)
+
         setFormData({
           name: '',
           whatsapp: '',
           email: '',
+          investment: '', 
           subject: 'Novo contato - Franquia!'
         });
       } else {
@@ -72,7 +81,6 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Os campos do formulário continuam os mesmos */}
       <div>
         <Input
           name="name"
@@ -83,18 +91,18 @@ const ContactForm = () => {
           required
         />
       </div>
-      
+
       <div>
         <Input
           name="whatsapp"
           value={formData.whatsapp}
           onChange={handleChange}
-          placeholder="Seu WhatsApp"
+          placeholder="Seu WhatsApp (com DDD)"
           className="w-full"
           required
         />
       </div>
-      
+
       <div>
         <Input
           name="email"
@@ -106,9 +114,32 @@ const ContactForm = () => {
           required
         />
       </div>
+
       
+      <div>
+        <label htmlFor="investment" className="block text-sm font-medium text-gray-700 mb-1">
+          Qual é o investimento que você quer fazer no momento?
+        </label>
+        
+        <select
+          id="investment"
+          name="investment"
+          value={formData.investment}
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500" // Estilização básica, ajuste conforme seus componentes de UI
+          required
+        >
+          <option value="" disabled>Selecione uma faixa de investimento</option>
+          {investmentOptions.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <div className="pt-2">
-        <Button 
+        <Button
           type="submit"
           className="w-full bg-orange-500 hover:bg-orange-600 text-white py-6"
           disabled={isSubmitting}

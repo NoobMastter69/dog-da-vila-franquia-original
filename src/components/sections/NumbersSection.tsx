@@ -18,7 +18,7 @@ const NumbersSection = () => {
           
           <Card className="bg-black/20 border-none text-white shadow-lg">
             <CardContent className="pt-6">
-              <p className="text-5xl font-bold mb-2">1-8</p>
+              <p className="text-5xl font-bold mb-2">18-24</p>
               <p className="text-xl">Meses de PayBack</p>
             </CardContent>
           </Card>
