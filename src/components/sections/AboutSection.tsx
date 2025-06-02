@@ -24,7 +24,8 @@ const AboutSection = () => {
                   if (target) {
                     target.scrollIntoView({ behavior: "smooth" });
                   }
-                }}
+                }} 
+          
               >
                 Conheça nossos produtos
               </Button>

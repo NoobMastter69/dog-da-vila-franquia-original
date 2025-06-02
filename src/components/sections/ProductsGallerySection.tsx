@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Carousel,
   CarouselContent,
@@ -15,18 +16,22 @@ const ProductsGallerySection = () => {
           Nossos <span className="text-orange-500">Produtos</span>
         </h2>
 
-        <Carousel className="w-full max-w-4xl mx-auto">
+        <Carousel
+          opts={{
+            loop: true, // Adicionando o loop de volta!
+          }}
+          className="w-full max-w-4xl mx-auto"
+        >
           <CarouselContent>
-            {[1, 2, 3, 6].map((item) => (
+            {[1, 2, 3, 6].map((item) => ( // Seus itens de exemplo
               <CarouselItem key={item} className="md:basis-1/2 lg:basis-1/3">
                 <div className="p-1">
                   <Card className="overflow-hidden shadow-lg">
                     <CardContent className="p-0">
                       <img
                         src={`/images/produto${item}.png`}
-                    
                         alt={`Produto ${item}`}
-                        className="w-full h-64 object-cover"
+                        className="w-full h-72 md:h-80 object-cover"
                       />
                     </CardContent>
                   </Card>

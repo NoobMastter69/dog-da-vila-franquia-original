@@ -11,25 +11,28 @@ const HeroSection = () => {
   return (
     <section id="inicio" className="relative h-[500px] md:h-[600px] overflow-hidden">
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat hero-background-image"
         style={{
-          backgroundImage: "url('/images/restaurante.png')",
-          filter: "blur(5px) brightness(0.4) sepia(0.3) hue-rotate(5deg)"
+          backgroundImage: "url('/images/restaurante2.png')",
+          filter: " brightness(0.4) sepia(0.3) hue-rotate(5deg)",
         }}
       />
       <div className="relative z-10 container mx-auto flex flex-col items-center justify-center h-full px-4 text-center">
         <img
           src="/images/logo.png"
           alt="Dog da Vila"
-          className="w-64 md:w-80 mb-6 animate-fade-in"
+          className="w-56 sm:w-72 md:w-80 mb-6 animate-fade-in"
         />
-        <h1 className="text-2xl md:text-4xl text-white font-bold mb-6 animate-fade-in">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl text-white font-bold mb-6 animate-fade-in">
           Simplesmente Diferente
         </h1>
-        {/* Linha alterada abaixo: adicionado 'flex justify-center' */}
         <div className="mt-8 animate-fade-in flex justify-center">
           <Button
-            className="bg-orange-500 hover:bg-orange-600 text-white px-16 py-10 text-3xl rounded-full"
+            className="bg-orange-500 hover:bg-orange-600 text-white rounded-full
+                       px-12 py-8 text-2xl     /* Base: py-6 -> py-8 (ALTURA AUMENTADA) */
+                       sm:px-14 sm:py-10 sm:text-2xl  /* SM: sm:py-8 -> sm:py-10 (ALTURA AUMENTADA) */
+                       md:px-16 md:py-12 md:text-3xl /* MD: md:py-10 -> md:py-12 (ALTURA AUMENTADA) */
+                      "
             onClick={scrollToFranchiseSection}
           >
             Seja um Franqueado
