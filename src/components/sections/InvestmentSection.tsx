@@ -26,18 +26,31 @@ const InvestmentSection = () => {
   const [payback, setPayback] = useState(0);
   const [monthlyProfit, setMonthlyProfit] = useState(0);
 
-  /*
-    Fórmulas exemplo (depois você pode trocar pelos dados reais):
-    - payback (meses)   = investimento / 25 000  (mínimo 6 meses)
-    - lucro médio/mês   = (investimento * 0.18) / payback
-   */
+  // ===== LÓGICA DO SIMULADOR ATUALIZADA AQUI =====
   useEffect(() => {
-    const paybackMonths = Math.max(6, Math.round(investment / 25_000));
+    // Definimos os limites do investimento e do payback
+    const MIN_INVESTMENT = 50_000;
+    const MAX_INVESTMENT = 300_000;
+    const MIN_PAYBACK = 18;
+    const MAX_PAYBACK = 24;
+
+    // Calculamos a proporção do investimento atual dentro do seu intervalo
+    const investmentRange = MAX_INVESTMENT - MIN_INVESTMENT;
+    const investmentProgress = (investment - MIN_INVESTMENT) / investmentRange;
+
+    // Aplicamos essa mesma proporção ao intervalo de payback
+    const paybackRange = MAX_PAYBACK - MIN_PAYBACK;
+    const calculatedPayback = MIN_PAYBACK + (investmentProgress * paybackRange);
+
+    // Arredondamos o payback para um número inteiro de meses
+    const paybackMonths = Math.round(calculatedPayback);
+
+    // A fórmula do lucro médio mensal agora usa o novo payback
     const profit = Math.round((investment * 0.18) / paybackMonths);
 
     setPayback(paybackMonths);
     setMonthlyProfit(profit);
-  }, [investment]);
+  }, [investment]); // A lógica roda toda vez que o 'investment' muda
 
   return (
     <section id="investimento" className="py-16 bg-gray-900">
@@ -87,7 +100,7 @@ const InvestmentSection = () => {
             <div className="grid grid-cols-2 gap-4 mt-4">
               <div className="bg-gray-800 p-4 rounded-xl text-center">
                 <p className="text-xs uppercase text-gray-400 tracking-wide">
-                  Payback
+                  Payback Estimado
                 </p>
                 <p className="text-3xl font-bold text-orange-500">{payback}m</p>
               </div>
@@ -103,7 +116,7 @@ const InvestmentSection = () => {
 
             {/* Call‑to‑Action */}
             <Button
-              className="mt-6 bg-orange-500 hover:bg-orange-600 text-white rounded-full w-full md:w-auto mx-auto px-8 py-7 text-lg font-bold" // <-- A ALTURA FOI AJUSTADA AQUI
+              className="mt-6 bg-orange-500 hover:bg-orange-600 text-white rounded-full w-full md:w-auto mx-auto px-8 py-7 text-lg font-bold"
               onClick={() =>
                 document
                   .getElementById("contato")
