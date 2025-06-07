@@ -23,8 +23,8 @@ const Header = () => {
           <nav className="hidden md:flex space-x-8 items-center">
             <a href="#inicio" className="text-gray-800 hover:text-orange-500 font-medium">Início</a>
             <a href="#sobre" className="text-gray-800 hover:text-orange-500 font-medium">Sobre Nós</a>
-            <a href="#produtos" className="text-gray-800 hover:text-orange-500 font-medium">Produtos</a>
             <a href="#investimento" className="text-gray-800 hover:text-orange-500 font-medium">Investimento</a>
+             <a href="#produtos" className="text-gray-800 hover:text-orange-500 font-medium">Produtos</a>
           </nav>
 
           {/* Botão de Menu Mobile */}
