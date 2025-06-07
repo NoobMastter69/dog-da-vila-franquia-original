@@ -2,7 +2,8 @@ import { FaCheckCircle, FaStore, FaMoneyBillWave, FaUtensils, FaHandsHelping } f
 
 const BenefitsSection = () => {
   return (
-    <section className="py-16 bg-white">
+    // A única mudança é aqui, adicionando o id
+    <section id="porque-investir" className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
           Por que investir no <span className="text-orange-500">Dog da Vila?</span>

@@ -8,12 +8,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 const ContactForm = () => {
   const accessKey = 'b8499ac9-f910-41a2-a5fd-4cf112cdee4c';
 
+  // ===== OPÇÕES DE INVESTIMENTO ATUALIZADAS E CORRIGIDAS AQUI =====
   const investmentOptions = [
-    "Até R$50.000",
-    "R$50.000 - R$100.000",
-    "R$100.000 - R$200.000",
-    "Acima de R$200.000",
-    "Prefiro discutir em contato"
+    "Loja delivery (home office): R$ 7 mil - R$ 12 mil",
+    "Carrinho de rua: R$ 9 mil - R$ 15 mil",
+    "Quiosque: R$ 35 mil - R$ 60 mil",
+    "Loja física pequena (com delivery): R$ 100 mil - R$ 140 mil",
+    "Loja física (porte médio): R$ 150 mil - R$ 220 mil",
+    "Loja física (grande porte): R$ 220 mil - R$ 350 mil",
+    "Outro valor / Prefiro discutir em contato"
   ];
 
   const [formData, setFormData] = useState({
@@ -121,7 +124,7 @@ const ContactForm = () => {
 
       <div>
         <label htmlFor="investment-label" className="block text-sm font-medium text-gray-700 mb-1">
-          Qual é o investimento que você quer fazer no momento?
+          Qual modelo de franquia você tem interesse?
         </label>
         {/* Substituído o select nativo pelo componente Select do Shadcn */}
         <Select
@@ -130,7 +133,7 @@ const ContactForm = () => {
           required
         >
           <SelectTrigger id="investment-label" className="w-full">
-            <SelectValue placeholder="Selecione uma faixa de investimento" />
+            <SelectValue placeholder="Selecione um modelo de interesse" />
           </SelectTrigger>
           <SelectContent>
             {investmentOptions.map((option, index) => (

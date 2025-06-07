@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Logo and about */}
           <div>
-            <img src="/images/logo.png" alt="Dog da Vila" className="h-20 mb-4" />
+            <img src="/images/logo2.PNG" alt="Dog da Vila" className="h-20 mb-4" />
             <p className="text-gray-400 mb-4">
               Desde 2012, pensando em fazer o melhor para as pessoas. Buscando facilitar processos internos e se redescobrindo a cada dia como satisfazer a cada dia nossos clientes externos !!
             </p>
