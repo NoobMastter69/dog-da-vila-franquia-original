@@ -19,7 +19,7 @@ const HeroSection = () => {
       />
       <div className="relative z-10 container mx-auto flex flex-col items-center justify-center h-full px-4 text-center">
         <img
-          src="/images/logo.png"
+          src="/images/logo2.PNG"
           alt="Dog da Vila"
           className="w-56 sm:w-72 md:w-80 mb-4 animate-fade-in mt-16"
         />
