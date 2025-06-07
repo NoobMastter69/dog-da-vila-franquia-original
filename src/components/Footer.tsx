@@ -2,14 +2,14 @@ import { MapPinIcon, PhoneIcon, MailIcon, InstagramIcon } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 text-white" translate="no">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Logo and about */}
           <div>
             <img src="/images/logo.png" alt="Dog da Vila" className="h-20 mb-4" />
             <p className="text-gray-400 mb-4">
-              Desde 2012, o Dog da Vila oferece uma experiência gastronômica única com hambúrgueres e hot dogs artesanais de alta qualidade.
+              Desde 2012, pensando em fazer o melhor para as pessoas. Buscando facilitar processos internos e se redescobrindo a cada dia como satisfazer a cada dia nossos clientes externos !!
             </p>
           </div>
 
@@ -27,7 +27,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <MailIcon className="w-5 h-5 mr-2 text-orange-500" />
-                <span> brunotizer@icloud.com</span>
+                <span>brunotizer@icloud.com</span>
               </li>
             </ul>
           </div>
@@ -51,7 +51,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Dog da Vila. Todos os direitos reservados.</p>
+          <p>&copy; {new Date().getFullYear()} <span className="font-semibold text-orange-400">Dog da Vila</span>. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
