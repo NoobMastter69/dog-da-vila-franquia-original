@@ -29,13 +29,12 @@ const HeroSection = () => {
         <div className="mt-6 animate-fade-in flex justify-center">
           <Button
             className="bg-orange-500 hover:bg-orange-600 text-white rounded-full
-                       px-20 py-12 text-2xl          /* Base: AUMENTADO de px-16 py-10 */
-                       sm:px-24 sm:py-16 sm:text-2xl /* SM: AUMENTADO de sm:px-20 sm:py-12 */
-                       md:px-28 md:py-20 md:text-3xl /* MD: AUMENTADO de md:px-24 md:py-16 */
-                       shadow-xl                     /* Sombra mais forte para destaque */
-                       transform transition-transform duration-200 ease-in-out /* Prepara para transição */
-                       hover:scale-105               /* Aumenta um pouco ao passar o mouse */
-                      "
+                       text-xl py-10 px-10           /* Base (Celular): Tamanho perfeito, mantido! */
+                       md:text-2xl md:py-12 md:px-16   /* MD (Tablet): Transição suave */
+                       lg:text-3xl lg:py-16 lg:px-28   /* LG (PC): Altura aumentada sutilmente para 16 */
+                       shadow-xl
+                       transition-transform duration-200
+                       hover:scale-105"
             onClick={scrollToFranchiseSection}
           >
             Seja um Franqueado

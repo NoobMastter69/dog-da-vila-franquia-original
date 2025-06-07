@@ -32,21 +32,18 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Follow us */}
-          <div>
+         
+        
+          <div className="flex flex-col items-center md:items-start">
             <h3 className="text-xl font-bold mb-4 text-orange-400">Siga-nos</h3>
-            <div className="flex space-x-4">
-             
-              {/* Link do Instagram corrigido */}
-              <a 
-                href="https://www.instagram.com/dogdavilaofc/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="bg-orange-500 p-2 rounded-full hover:bg-orange-600 transition-colors"
-              >
-                <InstagramIcon className="w-5 h-5" />
-              </a>
-            </div>
+            <a 
+              href="https://www.instagram.com/dogdavilaofc/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="bg-orange-500 p-2 rounded-full hover:bg-orange-600 transition-colors"
+            >
+              <InstagramIcon className="w-5 h-5" />
+            </a>
           </div>
         </div>
 
