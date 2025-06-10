@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -27,7 +28,7 @@ const ContactForm = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // As funções handleInputChange, handleInvestmentChange, e handleSubmit continuam iguais...
+  // As funções de controle (handlers e submit) permanecem as mesmas
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -43,33 +44,22 @@ const ContactForm = () => {
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({ ...formData, access_key: accessKey })
       });
       const result = await response.json();
       if (result.success) {
-        toast({
-          title: "Formulário enviado!",
-          description: "Obrigado pelo seu contato. Entraremos em contato em breve.",
-        });
+        toast({ title: "Formulário enviado!", description: "Obrigado pelo seu contato. Entraremos em contato em breve." });
         setFormData({ name: '', whatsapp: '', email: '', investment: '', subject: 'Novo contato - Franquia!' });
       } else {
         throw new Error(result.message || 'Falha ao enviar o formulário.');
       }
     } catch (error) {
-      toast({
-        title: "Erro ao enviar",
-        description: "Ocorreu um problema inesperado. Por favor, tente novamente.",
-        variant: "destructive"
-      });
+      toast({ title: "Erro ao enviar", description: "Ocorreu um problema inesperado. Por favor, tente novamente.", variant: "destructive" });
     } finally {
       setIsSubmitting(false);
     }
   };
-
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -84,12 +74,13 @@ const ContactForm = () => {
           Qual modelo de franquia você tem interesse?
         </label>
         <Select value={formData.investment} onValueChange={handleInvestmentChange} required>
-          {/* 1. CORREÇÃO DO CAMPO DE SELEÇÃO */}
+          {/* MUDANÇA 1: Forçando o estilo do campo com `!` */}
           <SelectTrigger
             id="investment-label"
-            className="flex w-full items-center justify-between whitespace-normal h-auto py-2 px-3 text-left leading-snug"
+            className="flex w-full items-center justify-between !h-auto whitespace-normal py-2 px-3 text-left leading-snug"
           >
-            <SelectValue placeholder="Selecione um modelo de interesse" />
+            {/* MUDANÇA 2: Texto do placeholder encurtado */}
+            <SelectValue placeholder="Selecione um modelo..." />
           </SelectTrigger>
           
           <SelectContent className="max-w-[95vw]">
@@ -108,13 +99,13 @@ const ContactForm = () => {
 
       {/* Botão de envio corrigido */}
       <div className="pt-2">
-        {/* 2. CORREÇÃO DO BOTÃO */}
         <Button
           type="submit"
-          className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-5 text-sm sm:text-base"
+          className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 text-sm"
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Enviando...' : 'Quero saber mais sobre a Franquia'}
+          {/* MUDANÇA 3: Texto do botão encurtado */}
+          {isSubmitting ? 'Enviando...' : 'QUERO SABER MAIS'}
         </Button>
       </div>
     </form>
