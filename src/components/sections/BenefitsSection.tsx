@@ -14,7 +14,7 @@ const BenefitsSection = () => {
             <FaStore className="text-orange-500 text-3xl" />
             <div>
               <h3 className="text-xl font-semibold">Modelo Enxuto</h3>
-              <p>Fácil de replicar e operar, ideal para começar rápido.</p>
+              <p>Operação simplificada, ideal para começar de forma simples e rapida!</p>
             </div>
           </div>
 
@@ -22,7 +22,7 @@ const BenefitsSection = () => {
             <FaMoneyBillWave className="text-orange-500 text-3xl" />
             <div>
               <h3 className="text-xl font-semibold">Baixo investimento</h3>
-              <p>Comece seu negócio com pouco capital inicial.</p>
+              <p>Comece seu negócio com pouco capital inicial!</p>
             </div>
           </div>
 
@@ -38,7 +38,7 @@ const BenefitsSection = () => {
             <FaUtensils className="text-orange-500 text-3xl" />
             <div>
               <h3 className="text-xl font-semibold">Cardápio variado</h3>
-              <p>Margem alta e atrativo para todos os públicos.</p>
+              <p>Atrativo a um grupo amplamente diversificado!</p>
             </div>
           </div>
 
