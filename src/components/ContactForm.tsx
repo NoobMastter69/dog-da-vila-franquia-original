@@ -27,6 +27,7 @@ const ContactForm = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // As funções handleInputChange, handleInvestmentChange, e handleSubmit continuam iguais...
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -39,8 +40,6 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Lógica de envio do formulário...
-    // (o resto da função continua igual)
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -71,9 +70,10 @@ const ContactForm = () => {
     }
   };
 
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Inputs de Nome, WhatsApp e E-mail (sem alterações) */}
+      {/* Inputs de Nome, WhatsApp e E-mail */}
       <div><Input name="name" value={formData.name} onChange={handleInputChange} placeholder="Seu Nome" required /></div>
       <div><Input name="whatsapp" value={formData.whatsapp} onChange={handleInputChange} placeholder="Seu WhatsApp (com DDD)" required /></div>
       <div><Input name="email" value={formData.email} onChange={handleInputChange} placeholder="Seu e-mail" type="email" required /></div>
@@ -84,14 +84,13 @@ const ContactForm = () => {
           Qual modelo de franquia você tem interesse?
         </label>
         <Select value={formData.investment} onValueChange={handleInvestmentChange} required>
-          {/* ==================== APLIQUE ESTA MUDANÇA ==================== */}
+          {/* 1. CORREÇÃO DO CAMPO DE SELEÇÃO */}
           <SelectTrigger
             id="investment-label"
             className="flex w-full items-center justify-between whitespace-normal h-auto py-2 px-3 text-left leading-snug"
           >
             <SelectValue placeholder="Selecione um modelo de interesse" />
           </SelectTrigger>
-          {/* ============================================================= */}
           
           <SelectContent className="max-w-[95vw]">
             {investmentOptions.map((option, index) => (
@@ -107,9 +106,14 @@ const ContactForm = () => {
         </Select>
       </div>
 
-      {/* Botão de envio (sem alterações) */}
+      {/* Botão de envio corrigido */}
       <div className="pt-2">
-        <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white py-6" disabled={isSubmitting}>
+        {/* 2. CORREÇÃO DO BOTÃO */}
+        <Button
+          type="submit"
+          className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-5 text-sm sm:text-base"
+          disabled={isSubmitting}
+        >
           {isSubmitting ? 'Enviando...' : 'Quero saber mais sobre a Franquia'}
         </Button>
       </div>
