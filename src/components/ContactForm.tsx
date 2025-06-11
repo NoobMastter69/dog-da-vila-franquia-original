@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -28,7 +27,6 @@ const ContactForm = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // As funções de controle (handlers e submit) permanecem as mesmas
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -40,6 +38,19 @@ const ContactForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // ==================== VERIFICAÇÃO ADICIONADA AQUI ====================
+    // Verifica se uma opção de investimento foi selecionada
+    if (!formData.investment) {
+      toast({
+        title: "Campo obrigatório",
+        description: "Por favor, selecione um modelo de franquia para continuar.",
+        variant: "destructive",
+      });
+      return; // Impede o envio do formulário se o campo estiver vazio
+    }
+    // =====================================================================
+
     setIsSubmitting(true);
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
@@ -61,6 +72,7 @@ const ContactForm = () => {
     }
   };
 
+  // O return com o JSX do formulário continua o mesmo
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* Inputs de Nome, WhatsApp e E-mail */}
@@ -68,18 +80,17 @@ const ContactForm = () => {
       <div><Input name="whatsapp" value={formData.whatsapp} onChange={handleInputChange} placeholder="Seu WhatsApp (com DDD)" required /></div>
       <div><Input name="email" value={formData.email} onChange={handleInputChange} placeholder="Seu e-mail" type="email" required /></div>
 
-      {/* Campo Select corrigido */}
+      {/* Campo Select */}
       <div>
         <label htmlFor="investment-label" className="block text-sm font-medium text-gray-700 mb-1">
           Qual modelo de franquia você tem interesse?
         </label>
+        {/* O 'required' aqui serve mais como um indicador semântico */}
         <Select value={formData.investment} onValueChange={handleInvestmentChange} required>
-          {/* MUDANÇA 1: Forçando o estilo do campo com `!` */}
           <SelectTrigger
             id="investment-label"
             className="flex w-full items-center justify-between !h-auto whitespace-normal py-2 px-3 text-left leading-snug"
           >
-            {/* MUDANÇA 2: Texto do placeholder encurtado */}
             <SelectValue placeholder="Selecione um modelo..." />
           </SelectTrigger>
           
@@ -97,14 +108,13 @@ const ContactForm = () => {
         </Select>
       </div>
 
-      {/* Botão de envio corrigido */}
+      {/* Botão de envio */}
       <div className="pt-2">
         <Button
           type="submit"
           className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 text-sm"
           disabled={isSubmitting}
         >
-          {/* MUDANÇA 3: Texto do botão encurtado */}
           {isSubmitting ? 'Enviando...' : 'QUERO SABER MAIS'}
         </Button>
       </div>
