@@ -1,14 +1,29 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { Volume2, VolumeX } from 'lucide-react';
 
 const InvestmentSection = () => {
   const videoFiles = [
-    '/videos/doglanchonetevid.mp4',
-    '/videos/doglanchonetevid2.mp4'
+    '/videos/dogvideo.mp4'
   ];
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
+  
+  const videoRef = useRef(null);
+  const [videoAspectRatio, setVideoAspectRatio] = useState(16 / 9);
 
   const handleVideoEnded = () => {
     setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videoFiles.length);
+  };
+
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+  };
+
+  const handleMetadata = () => {
+    if (videoRef.current) {
+      const { videoWidth, videoHeight } = videoRef.current;
+      setVideoAspectRatio(videoWidth / videoHeight);
+    }
   };
 
   return (
@@ -18,26 +33,53 @@ const InvestmentSection = () => {
           Investimento
         </h2>
 
-        <div className="flex justify-center">
-          <div className="bg-black/70 p-6 rounded-lg shadow-xl w-full md:w-2/3">
-            <h3 className="text-2xl font-bold mb-4 text-orange-400">Loja Física:</h3>
-            <video
-              key={videoFiles[currentVideoIndex]}
-              // A altura foi alterada de h-64 para h-96
-              className="w-full h-96 object-cover rounded-lg mb-4"
-              src={videoFiles[currentVideoIndex]}
-              autoPlay
-              muted
-              playsInline
-              onEnded={handleVideoEnded}
-              // controls
+        {/* 1. O CARD PRINCIPAL AGORA É UM FLEX CONTAINER NO PC (md:flex) */}
+        {/* A largura máxima foi aumentada para 5xl para comportar as duas colunas */}
+        <div className="bg-black/70 p-6 sm:p-8 rounded-lg shadow-xl w-full max-w-5xl mx-auto md:flex md:items-center md:gap-8">
+          
+          {/* 2. COLUNA DO VÍDEO (metade da largura no PC) */}
+          <div className="md:w-1/2">
+            <div 
+              className="relative w-full rounded-lg overflow-hidden bg-black"
+              style={{ aspectRatio: videoAspectRatio }}
             >
-              Seu navegador não suporta a tag de vídeo.
-            </video>
+              <video
+                ref={videoRef}
+                onLoadedMetadata={handleMetadata}
+                key={videoFiles[currentVideoIndex]}
+                className="w-full h-full object-contain"
+                src={videoFiles[currentVideoIndex]}
+                autoPlay
+                muted={isMuted}
+                loop
+                playsInline
+                onEnded={handleVideoEnded}
+              >
+                Seu navegador não suporta a tag de vídeo.
+              </video>
+
+              <button
+                onClick={toggleMute}
+                className="absolute bottom-3 right-3 z-10 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all focus:outline-none"
+                aria-label={isMuted ? "Ativar som" : "Desativar som"}
+              >
+                {isMuted ? (
+                  <VolumeX className="h-5 w-5" />
+                ) : (
+                  <Volume2 className="h-5 w-5" />
+                )}
+              </button>
+            </div>
+          </div>
+          
+          {/* 3. COLUNA DO TEXTO (outra metade da largura no PC) */}
+          <div className="md:w-1/2 mt-6 md:mt-0">
+            <h3 className="text-2xl font-bold mb-4 text-orange-400">Loja Física:</h3>
             <p className="text-gray-300">
               Mergulhe na experiência completa Dog da Vila com a nossa loja física. Um espaço vibrante e acolhedor, projetado para encantar seus clientes e reforçar a identidade da marca. Ofereça um cardápio extenso, crie laços com a comunidade local e construa um negócio sólido e duradouro com nosso suporte especializado em cada etapa.
             </p>
           </div>
+
         </div>
       </div>
     </section>
