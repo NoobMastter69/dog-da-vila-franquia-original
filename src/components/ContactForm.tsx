@@ -39,15 +39,39 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // ==================== VERIFICAÇÃO ADICIONADA AQUI ====================
-    // Verifica se uma opção de investimento foi selecionada
+    // 1. Verificação do campo de seleção
     if (!formData.investment) {
       toast({
         title: "Campo obrigatório",
-        description: "Por favor, selecione um modelo de franquia para continuar.",
+        description: "Por favor, selecione um modelo de franquia.",
         variant: "destructive",
       });
-      return; // Impede o envio do formulário se o campo estiver vazio
+      return; 
+    }
+
+    // ==================== NOVA VALIDAÇÃO REFINADA DO NOME ====================
+
+    // 2. VERIFICAÇÃO DE CARACTERES INVÁLIDOS
+    // Esta Regex permite apenas letras (incluindo acentuadas) e espaços.
+    const validNameRegex = /^[\p{L} ]+$/u;
+    if (!validNameRegex.test(formData.name)) {
+        toast({
+            title: "Nome inválido",
+            description: "Seu nome deve conter apenas letras e espaços.",
+            variant: "destructive",
+        });
+        return; // Impede o envio
+    }
+
+    // 3. VERIFICAÇÃO DE NOME COMPLETO (MÍNIMO 2 PALAVRAS)
+    const nameParts = formData.name.trim().split(' ').filter(Boolean);
+    if (nameParts.length < 2) {
+      toast({
+        title: "Nome incompleto",
+        description: "Por favor, insira seu nome completo.",
+        variant: "destructive",
+      });
+      return; // Impede o envio
     }
     // =====================================================================
 
@@ -72,11 +96,10 @@ const ContactForm = () => {
     }
   };
 
-  // O return com o JSX do formulário continua o mesmo
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* Inputs de Nome, WhatsApp e E-mail */}
-      <div><Input name="name" value={formData.name} onChange={handleInputChange} placeholder="Seu Nome" required /></div>
+      <div><Input name="name" value={formData.name} onChange={handleInputChange} placeholder="Seu Nome Completo" required /></div>
       <div><Input name="whatsapp" value={formData.whatsapp} onChange={handleInputChange} placeholder="Seu WhatsApp (com DDD)" required /></div>
       <div><Input name="email" value={formData.email} onChange={handleInputChange} placeholder="Seu e-mail" type="email" required /></div>
 
@@ -85,7 +108,6 @@ const ContactForm = () => {
         <label htmlFor="investment-label" className="block text-sm font-medium text-gray-700 mb-1">
           Qual modelo de franquia você tem interesse?
         </label>
-        {/* O 'required' aqui serve mais como um indicador semântico */}
         <Select value={formData.investment} onValueChange={handleInvestmentChange} required>
           <SelectTrigger
             id="investment-label"
