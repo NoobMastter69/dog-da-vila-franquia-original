@@ -15,20 +15,14 @@ const Footer = () => {
 
           {/* Contact information */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-orange-400">Contato</h3>
+            <h3 className="text-xl font-bold mb-4 text-orange-400">Unidades</h3>
             <ul className="space-y-3 text-gray-400">
               <li className="flex items-center">
                 <MapPinIcon className="w-5 h-5 mr-2 text-orange-500" />
                 <span>3 unidades em operação</span>
-              </li>
-              <li className="flex items-center">
-                <PhoneIcon className="w-5 h-5 mr-2 text-orange-500" />
-                <span>(11) 91476-1414</span>
-              </li>
-              <li className="flex items-center">
-                <MailIcon className="w-5 h-5 mr-2 text-orange-500" />
-                <span>brunotizer@icloud.com</span>
-              </li>
+            </li>
+             
+            
             </ul>
           </div>
 
