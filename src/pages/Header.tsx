@@ -40,8 +40,8 @@ const Header = () => {
           {/* 2. ADICIONAMOS O onClick EM TODOS OS LINKS */}
           <nav className="hidden md:flex space-x-8 items-center">
             <a href="#inicio" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Início</a>
+            <a href="#sobre" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Sobre Nós</a>
             <a href="#porque-investir" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Porque Investir?</a>
-             <a href="#sobre" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Sobre Nós</a>
             <a href="#investimento" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Investimento</a>
             <a href="#produtos" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Produtos</a>
           </nav>
@@ -65,8 +65,8 @@ const Header = () => {
             {/* 3. ADICIONAMOS O onClick EM TODOS OS LINKS DO MENU MOBILE TAMBÉM */}
             <div className="flex flex-col space-y-4 px-4">
               <a href="#inicio" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Início</a>
+              <a href="#sobre" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Sobre Nós</a>
               <a href="#porque-investir" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Porque Investir?</a>
-               <a href="#sobre" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Sobre Nós</a>
               <a href="#investimento" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Investimento</a>
               <a href="#produtos" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Produtos</a>
             </div>
