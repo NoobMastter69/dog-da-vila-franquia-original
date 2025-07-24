@@ -83,7 +83,7 @@ export function TelaDeEscolha({ onFranchiseClick }: TelaDeEscolhaProps) {
         <div style={styles.options}>
           {/* FAZER PEDIDO */}
           <a
-            href="pedido.anota.ai/loja/dog-da-vila2"
+            href="https://pedido.anota.ai/loja/dog-da-vila2"
             target="_blank"
             rel="noopener noreferrer"
             style={{ ...styles.button, ...styles.orderButton }}
