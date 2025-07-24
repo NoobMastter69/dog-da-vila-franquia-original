@@ -83,7 +83,7 @@ export function TelaDeEscolha({ onFranchiseClick }: TelaDeEscolhaProps) {
         <div style={styles.options}>
           {/* FAZER PEDIDO */}
           <a
-            href="https://l.instagram.com/?u=https%3A%2F%2Fpedido.anota.ai%2Floja%2Fdog-da-vila2%3Ffbclid%3DPAZXh0bgNhZW0CMTEAAaedQqWorVCXvgZkLgEF8uplwcu1KijG699SqdI9Xm6hIo_FmagXXNuXlgdSCw_aem_c7J8vfMDVoZX4mspCE3z-A&e=AT0vla7gykiAGF_NGDxOjTLOHpa7-6xDPOol5IF4iZaPQ_c83tnKD91wP9daeWFOudmKC4trfhU3P640TCTMGwbw7wRHnTxS7A5hoaBekKRpZxoLHIiJ4SY"
+            href="pedido.anota.ai/loja/dog-da-vila2"
             target="_blank"
             rel="noopener noreferrer"
             style={{ ...styles.button, ...styles.orderButton }}
