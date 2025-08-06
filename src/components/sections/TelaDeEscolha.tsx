@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const styles: { [key: string]: React.CSSProperties } = {
   overlay: {
@@ -49,6 +49,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     cursor: "pointer",
     textDecoration: "none",
     transition: "transform 0.2s ease, box-shadow 0.3s ease",
+    width: "100%",
+    textAlign: "center",
   },
   orderButton: {
     background: "linear-gradient(135deg, #ff8c00, #ff6700)",
@@ -57,6 +59,10 @@ const styles: { [key: string]: React.CSSProperties } = {
   franchiseButton: {
     background: "linear-gradient(135deg, #1f1f1f, #3a3a3a)",
     boxShadow: "0 4px 15px rgba(0,0,0,0.6)",
+  },
+  lojaButton: {
+    background: "linear-gradient(135deg, #262626, #4d4d4d)",
+    boxShadow: "0 4px 15px rgba(255,255,255,0.15)",
   },
   buttonHover: {
     transform: "scale(1.03)",
@@ -67,6 +73,21 @@ const styles: { [key: string]: React.CSSProperties } = {
     flexDirection: "column",
     gap: "20px",
   },
+  backButton: {
+    marginTop: "30px",
+    background: "transparent",
+    border: "2px solid #ff8c00",
+    color: "#ff8c00",
+    fontWeight: "600",
+    borderRadius: "12px",
+    padding: "12px 24px",
+    cursor: "pointer",
+    transition: "background 0.3s ease, color 0.3s ease",
+  },
+  backButtonHover: {
+    background: "#ff8c00",
+    color: "#fff",
+  },
 };
 
 interface TelaDeEscolhaProps {
@@ -74,43 +95,103 @@ interface TelaDeEscolhaProps {
 }
 
 export function TelaDeEscolha({ onFranchiseClick }: TelaDeEscolhaProps) {
+  // estado que controla qual tela está sendo mostrada
+  const [tela, setTela] = useState<"inicio" | "lojas">("inicio");
+  // estado para hover do botão voltar
+  const [hoverBack, setHoverBack] = useState(false);
+
+  // efeitos hover comuns para botões principais
+  const efeitoHover = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
+    Object.assign(e.currentTarget.style, styles.buttonHover);
+  };
+  const efeitoUnhover = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>, tipo: "orderButton" | "franchiseButton" | "lojaButton") => {
+    if (tipo === "orderButton") Object.assign(e.currentTarget.style, styles.orderButton);
+    else if (tipo === "franchiseButton") Object.assign(e.currentTarget.style, styles.franchiseButton);
+    else if (tipo === "lojaButton") Object.assign(e.currentTarget.style, styles.lojaButton);
+  };
+
   return (
     <div style={styles.overlay}>
       <div style={styles.container}>
-        <h1 style={styles.title}>Seja bem-vindo!</h1>
-        <p style={styles.subtitle}>O que você deseja fazer?</p>
+        {tela === "inicio" && (
+          <>
+            <h1 style={styles.title}>Seja bem-vindo!</h1>
+            <p style={styles.subtitle}>O que você deseja fazer?</p>
+            <div style={styles.options}>
+              {/* Botão Fazer Pedido */}
+              <button
+                onClick={() => setTela("lojas")}
+                style={{ ...styles.button, ...styles.orderButton }}
+                onMouseOver={efeitoHover}
+                onMouseOut={(e) => efeitoUnhover(e, "orderButton")}
+              >
+                Fazer um Pedido
+              </button>
 
-        <div style={styles.options}>
-          {/* FAZER PEDIDO */}
-          <a
-            href="https://pedido.anota.ai/loja/dog-da-vila2"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ ...styles.button, ...styles.orderButton }}
-            onMouseOver={(e) =>
-              Object.assign(e.currentTarget.style, styles.buttonHover)
-            }
-            onMouseOut={(e) =>
-              Object.assign(e.currentTarget.style, styles.orderButton)
-            }
-          >
-            🍔 Fazer um Pedido
-          </a>
+              {/* Botão Quero ser Franqueado */}
+              <button
+                onClick={onFranchiseClick}
+                style={{ ...styles.button, ...styles.franchiseButton }}
+                onMouseOver={efeitoHover}
+                onMouseOut={(e) => efeitoUnhover(e, "franchiseButton")}
+              >
+                Quero ser um Franqueado
+              </button>
+            </div>
+          </>
+        )}
 
-          {/* SER FRANQUEADO */}
-          <button
-            onClick={onFranchiseClick}
-            style={{ ...styles.button, ...styles.franchiseButton }}
-            onMouseOver={(e) =>
-              Object.assign(e.currentTarget.style, styles.buttonHover)
-            }
-            onMouseOut={(e) =>
-              Object.assign(e.currentTarget.style, styles.franchiseButton)
-            }
-          >
-            💼 Quero ser um Franqueado
-          </button>
-        </div>
+        {tela === "lojas" && (
+          <>
+            <h1 style={styles.title}>Qual unidade você prefere?</h1>
+            <p style={styles.subtitle}>Escolha a lanchonete mais próxima de você para fazer o pedido.</p>
+
+            <div style={styles.options}>
+              <a
+                href="https://pedido.anota.ai/loja/dogdavilaooriginal"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ ...styles.button, ...styles.lojaButton }}
+                onMouseOver={efeitoHover}
+                onMouseOut={(e) => efeitoUnhover(e, "lojaButton")}
+              >
+                Dog da Vila - Jd. Rosana
+              </a>
+              <a
+                href="https://pedido.anota.ai/loja/dog-da-vila2"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ ...styles.button, ...styles.lojaButton }}
+                onMouseOver={efeitoHover}
+                onMouseOut={(e) => efeitoUnhover(e, "lojaButton")}
+              >
+                Dog da Vila - Jd. Independência
+              </a>
+              <a
+                href="https://pedido.anota.ai/loja/fabuloso-dog-da-vila-hot-dog-burguers"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ ...styles.button, ...styles.lojaButton }}
+                onMouseOver={efeitoHover}
+                onMouseOut={(e) => efeitoUnhover(e, "lojaButton")}
+              >
+                Dog da Vila - Un. Caieiras
+              </a>
+            </div>
+
+            <button
+              style={{
+                ...styles.backButton,
+                ...(hoverBack ? styles.backButtonHover : {}),
+              }}
+              onMouseEnter={() => setHoverBack(true)}
+              onMouseLeave={() => setHoverBack(false)}
+              onClick={() => setTela("inicio")}
+            >
+              ← Voltar
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
