@@ -144,7 +144,7 @@ export function TelaDeEscolha({ onFranchiseClick }: TelaDeEscolhaProps) {
         {tela === "lojas" && (
           <>
             <h1 style={styles.title}>Qual unidade você prefere?</h1>
-            <p style={styles.subtitle}>Escolha a lanchonete mais próxima de você para fazer o pedido.</p>
+            <p style={styles.subtitle}>Escolha a unidade mais próxima de você para fazer o pedido.</p>
 
             <div style={styles.options}>
               <a

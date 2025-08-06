@@ -2,10 +2,17 @@ import { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
 
 const ContactForm = () => {
-  const accessKey = 'b8499ac9-f910-41a2-a5fd-4cf112cdee4c';
+  // ✅ Chave pública do Web3Forms
+  const accessKey = '3e690a33-0d1c-4e5e-bcc9-c1472e8e601d';
 
   const investmentOptions = [
     "Loja delivery (home office): R$ 7 mil - R$ 12 mil",
@@ -39,31 +46,28 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 1. Verificação do campo de seleção
+    // Validação: campo de seleção
     if (!formData.investment) {
       toast({
         title: "Campo obrigatório",
         description: "Por favor, selecione um modelo de franquia.",
         variant: "destructive",
       });
-      return; 
+      return;
     }
 
-    // ==================== NOVA VALIDAÇÃO REFINADA DO NOME ====================
-
-    // 2. VERIFICAÇÃO DE CARACTERES INVÁLIDOS
-    // Esta Regex permite apenas letras (incluindo acentuadas) e espaços.
+    // Validação: nome com apenas letras e espaços
     const validNameRegex = /^[\p{L} ]+$/u;
     if (!validNameRegex.test(formData.name)) {
-        toast({
-            title: "Nome inválido",
-            description: "Seu nome deve conter apenas letras e espaços.",
-            variant: "destructive",
-        });
-        return; // Impede o envio
+      toast({
+        title: "Nome inválido",
+        description: "Seu nome deve conter apenas letras e espaços.",
+        variant: "destructive",
+      });
+      return;
     }
 
-    // 3. VERIFICAÇÃO DE NOME COMPLETO (MÍNIMO 2 PALAVRAS)
+    // Validação: nome completo (mínimo 2 palavras)
     const nameParts = formData.name.trim().split(' ').filter(Boolean);
     if (nameParts.length < 2) {
       toast({
@@ -71,26 +75,47 @@ const ContactForm = () => {
         description: "Por favor, insira seu nome completo.",
         variant: "destructive",
       });
-      return; // Impede o envio
+      return;
     }
-    // =====================================================================
 
     setIsSubmitting(true);
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ ...formData, access_key: accessKey })
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          ...formData,
+          access_key: accessKey
+        })
       });
+
       const result = await response.json();
       if (result.success) {
-        toast({ title: "Formulário enviado!", description: "Obrigado pelo seu contato. Entraremos em contato em breve." });
-        setFormData({ name: '', whatsapp: '', email: '', investment: '', subject: 'Novo contato - Franquia!' });
+        toast({
+          title: "Formulário enviado!",
+          description: "Obrigado pelo seu contato. Entraremos em contato em breve."
+        });
+
+        // Resetar o formulário
+        setFormData({
+          name: '',
+          whatsapp: '',
+          email: '',
+          investment: '',
+          subject: 'Novo contato - Franquia!'
+        });
       } else {
         throw new Error(result.message || 'Falha ao enviar o formulário.');
       }
     } catch (error) {
-      toast({ title: "Erro ao enviar", description: "Ocorreu um problema inesperado. Por favor, tente novamente.", variant: "destructive" });
+      toast({
+        title: "Erro ao enviar",
+        description: "Ocorreu um problema inesperado. Por favor, tente novamente.",
+        variant: "destructive",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -98,24 +123,56 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Inputs de Nome, WhatsApp e E-mail */}
-      <div><Input name="name" value={formData.name} onChange={handleInputChange} placeholder="Seu Nome Completo" required /></div>
-      <div><Input name="whatsapp" value={formData.whatsapp} onChange={handleInputChange} placeholder="Seu WhatsApp (com DDD)" required /></div>
-      <div><Input name="email" value={formData.email} onChange={handleInputChange} placeholder="Seu e-mail" type="email" required /></div>
-
-      {/* Campo Select */}
+      {/* Inputs */}
       <div>
-        <label htmlFor="investment-label" className="block text-sm font-medium text-gray-700 mb-1">
+        <Input
+          name="name"
+          value={formData.name}
+          onChange={handleInputChange}
+          placeholder="Seu Nome Completo"
+          required
+        />
+      </div>
+      <div>
+        <Input
+          name="whatsapp"
+          value={formData.whatsapp}
+          onChange={handleInputChange}
+          placeholder="Seu WhatsApp (com DDD)"
+          required
+        />
+      </div>
+      <div>
+        <Input
+          name="email"
+          type="email"
+          value={formData.email}
+          onChange={handleInputChange}
+          placeholder="Seu e-mail"
+          required
+        />
+      </div>
+
+      {/* Select */}
+      <div>
+        <label
+          htmlFor="investment-label"
+          className="block text-sm font-medium text-gray-700 mb-1"
+        >
           Qual modelo de franquia você tem interesse?
         </label>
-        <Select value={formData.investment} onValueChange={handleInvestmentChange} required>
+        <Select
+          value={formData.investment}
+          onValueChange={handleInvestmentChange}
+          required
+        >
           <SelectTrigger
             id="investment-label"
             className="flex w-full items-center justify-between !h-auto whitespace-normal py-2 px-3 text-left leading-snug"
           >
             <SelectValue placeholder="Selecione um modelo..." />
           </SelectTrigger>
-          
+
           <SelectContent className="max-w-[95vw]">
             {investmentOptions.map((option, index) => (
               <SelectItem
@@ -130,7 +187,7 @@ const ContactForm = () => {
         </Select>
       </div>
 
-      {/* Botão de envio */}
+      {/* Botão */}
       <div className="pt-2">
         <Button
           type="submit"
