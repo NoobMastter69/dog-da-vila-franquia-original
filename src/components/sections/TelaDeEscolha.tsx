@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+// Estilos otimizados para responsividade 📱
 const styles: { [key: string]: React.CSSProperties } = {
   overlay: {
     position: "fixed",
@@ -13,28 +14,33 @@ const styles: { [key: string]: React.CSSProperties } = {
     alignItems: "center",
     zIndex: 1000,
     backdropFilter: "blur(10px)",
+    padding: "15px", // Adicionado para garantir margem em telas muito pequenas
   },
   container: {
     background: "rgba(255, 255, 255, 0.1)",
     borderRadius: "20px",
-    padding: "50px 40px",
+    // NOVO: Padding adaptável
+    padding: "clamp(30px, 8vw, 50px) clamp(20px, 6vw, 40px)",
     textAlign: "center",
     boxShadow: "0 0 25px rgba(0,0,0,0.4)",
     backdropFilter: "blur(20px)",
     WebkitBackdropFilter: "blur(20px)",
     border: "1px solid rgba(255,255,255,0.2)",
-    width: "90%",
+    width: "100%", // Alterado de 90% para 100% (o padding no overlay controla a margem)
     maxWidth: "480px",
+    boxSizing: "border-box", // Garante que o padding não aumente a largura total
   },
   title: {
-    fontSize: "2.5em",
+    // NOVO: Fonte responsiva com clamp(MIN, IDEAL, MAX)
+    fontSize: "clamp(1.8rem, 7vw, 2.5rem)",
     color: "#ff8c00",
     fontWeight: "bold",
     marginBottom: "10px",
     letterSpacing: "1px",
   },
   subtitle: {
-    fontSize: "1.2em",
+    // NOVO: Fonte responsiva
+    fontSize: "clamp(1rem, 4vw, 1.2rem)",
     color: "#eee",
     marginBottom: "40px",
   },
@@ -44,7 +50,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     color: "#fff",
     border: "none",
     borderRadius: "12px",
-    fontSize: "1.1em",
+    fontSize: "clamp(1rem, 4vw, 1.1rem)", // NOVO: Fonte responsiva
     fontWeight: "600",
     cursor: "pointer",
     textDecoration: "none",
@@ -95,20 +101,15 @@ interface TelaDeEscolhaProps {
 }
 
 export function TelaDeEscolha({ onFranchiseClick }: TelaDeEscolhaProps) {
-  // estado que controla qual tela está sendo mostrada
   const [tela, setTela] = useState<"inicio" | "lojas">("inicio");
-  // estado para hover do botão voltar
+  
+  // NOVO: Estados de hover individuais para cada botão
+  const [hoverOrder, setHoverOrder] = useState(false);
+  const [hoverFranchise, setHoverFranchise] = useState(false);
+  const [hoverLoja1, setHoverLoja1] = useState(false);
+  const [hoverLoja2, setHoverLoja2] = useState(false);
+  const [hoverLoja3, setHoverLoja3] = useState(false);
   const [hoverBack, setHoverBack] = useState(false);
-
-  // efeitos hover comuns para botões principais
-  const efeitoHover = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
-    Object.assign(e.currentTarget.style, styles.buttonHover);
-  };
-  const efeitoUnhover = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>, tipo: "orderButton" | "franchiseButton" | "lojaButton") => {
-    if (tipo === "orderButton") Object.assign(e.currentTarget.style, styles.orderButton);
-    else if (tipo === "franchiseButton") Object.assign(e.currentTarget.style, styles.franchiseButton);
-    else if (tipo === "lojaButton") Object.assign(e.currentTarget.style, styles.lojaButton);
-  };
 
   return (
     <div style={styles.overlay}>
@@ -118,22 +119,28 @@ export function TelaDeEscolha({ onFranchiseClick }: TelaDeEscolhaProps) {
             <h1 style={styles.title}>Seja bem-vindo!</h1>
             <p style={styles.subtitle}>O que você deseja fazer?</p>
             <div style={styles.options}>
-              {/* Botão Fazer Pedido */}
               <button
                 onClick={() => setTela("lojas")}
-                style={{ ...styles.button, ...styles.orderButton }}
-                onMouseOver={efeitoHover}
-                onMouseOut={(e) => efeitoUnhover(e, "orderButton")}
+                style={{
+                  ...styles.button,
+                  ...styles.orderButton,
+                  ...(hoverOrder ? styles.buttonHover : {}),
+                }}
+                onMouseEnter={() => setHoverOrder(true)}
+                onMouseLeave={() => setHoverOrder(false)}
               >
                 Fazer um Pedido
               </button>
 
-              {/* Botão Quero ser Franqueado */}
               <button
                 onClick={onFranchiseClick}
-                style={{ ...styles.button, ...styles.franchiseButton }}
-                onMouseOver={efeitoHover}
-                onMouseOut={(e) => efeitoUnhover(e, "franchiseButton")}
+                style={{
+                  ...styles.button,
+                  ...styles.franchiseButton,
+                  ...(hoverFranchise ? styles.buttonHover : {}),
+                }}
+                onMouseEnter={() => setHoverFranchise(true)}
+                onMouseLeave={() => setHoverFranchise(false)}
               >
                 Quero ser um Franqueado
               </button>
@@ -151,9 +158,13 @@ export function TelaDeEscolha({ onFranchiseClick }: TelaDeEscolhaProps) {
                 href="https://pedido.anota.ai/loja/dogdavilaooriginal"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ ...styles.button, ...styles.lojaButton }}
-                onMouseOver={efeitoHover}
-                onMouseOut={(e) => efeitoUnhover(e, "lojaButton")}
+                style={{
+                  ...styles.button,
+                  ...styles.lojaButton,
+                  ...(hoverLoja1 ? styles.buttonHover : {}),
+                }}
+                onMouseEnter={() => setHoverLoja1(true)}
+                onMouseLeave={() => setHoverLoja1(false)}
               >
                 Dog da Vila - Jd. Rosana
               </a>
@@ -161,9 +172,13 @@ export function TelaDeEscolha({ onFranchiseClick }: TelaDeEscolhaProps) {
                 href="https://pedido.anota.ai/loja/dog-da-vila2"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ ...styles.button, ...styles.lojaButton }}
-                onMouseOver={efeitoHover}
-                onMouseOut={(e) => efeitoUnhover(e, "lojaButton")}
+                style={{
+                  ...styles.button,
+                  ...styles.lojaButton,
+                  ...(hoverLoja2 ? styles.buttonHover : {}),
+                }}
+                onMouseEnter={() => setHoverLoja2(true)}
+                onMouseLeave={() => setHoverLoja2(false)}
               >
                 Dog da Vila - Jd. Independência
               </a>
@@ -171,9 +186,13 @@ export function TelaDeEscolha({ onFranchiseClick }: TelaDeEscolhaProps) {
                 href="https://pedido.anota.ai/loja/fabuloso-dog-da-vila-hot-dog-burguers"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ ...styles.button, ...styles.lojaButton }}
-                onMouseOver={efeitoHover}
-                onMouseOut={(e) => efeitoUnhover(e, "lojaButton")}
+                style={{
+                  ...styles.button,
+                  ...styles.lojaButton,
+                  ...(hoverLoja3 ? styles.buttonHover : {}),
+                }}
+                onMouseEnter={() => setHoverLoja3(true)}
+                onMouseLeave={() => setHoverLoja3(false)}
               >
                 Dog da Vila - Un. Caieiras
               </a>
