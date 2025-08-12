@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
+// Select não é mais necessário aqui, mas vou deixar caso use em outro lugar
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -106,11 +107,8 @@ const ContactFormGamified = () => {
             {step === 1 && (
                 <div className="space-y-4 animate-in fade-in-50">
                     <h3 className="text-lg font-semibold text-center">Vamos começar! Quem é você?</h3>
-                    {/* MODIFICADO */}
                     <div><Input name="name" value={formData.name} onChange={handleInputChange} placeholder="Seu Nome Completo" required className="text-base" /></div>
-                    {/* MODIFICADO */}
                     <div><Input name="whatsapp" value={formData.whatsapp} onChange={handleInputChange} placeholder="Seu WhatsApp (com DDD)" required className="text-base" /></div>
-                    {/* MODIFICADO */}
                     <div><Input name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="Seu e-mail" required className="text-base" /></div>
                 </div>
             )}
@@ -118,22 +116,32 @@ const ContactFormGamified = () => {
             {/* Etapa 2: Interesse na Franquia */}
             {step === 2 && (
                 <div className="space-y-4 animate-in fade-in-50">
-                     <h3 className="text-lg font-semibold text-center">Qual modelo de franquia mais te atrai?</h3>
-                    <Select value={formData.investment} onValueChange={handleInvestmentChange} required>
-                        {/* MODIFICADO */}
-                        <SelectTrigger className="!h-auto whitespace-normal py-2 px-3 text-left leading-snug text-base"><SelectValue placeholder="Selecione um modelo..." /></SelectTrigger>
-                        <SelectContent className="max-w-[95vw]">
-                            {investmentOptions.map((option) => (
-                                <SelectItem key={option.title} value={option.title} className="whitespace-normal h-auto py-3">
-                                    <div className="flex flex-col">
-                                        <span className="font-bold text-base">{option.title}</span>
-                                        <span className="text-orange-600 font-semibold">{option.totalValue}</span>
-                                        <span className="text-xs text-gray-500">{option.details}</span>
-                                    </div>
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
+                    <h3 className="text-lg font-semibold text-center">Qual modelo de franquia mais te atrai?</h3>
+                    
+                    {/* NOVO BLOCO - AQUI ESTÁ A MUDANÇA
+                      Troquei o <Select> por uma lista de botões para evitar problemas de renderização em celulares.
+                    */}
+                    <div className="space-y-3">
+                        {investmentOptions.map((option) => (
+                            <button
+                                key={option.title}
+                                type="button" // Importante para não submeter o formulário ao clicar
+                                onClick={() => handleInvestmentChange(option.title)}
+                                className={`w-full p-4 border rounded-lg text-left flex flex-col transition-all duration-200 ease-in-out
+                                    ${formData.investment === option.title
+                                        ? 'border-orange-500 bg-orange-50 ring-2 ring-orange-500 shadow-md'
+                                        : 'border-gray-300 bg-white hover:border-orange-400 hover:bg-orange-50'
+                                    }`
+                                }
+                            >
+                                <span className="font-bold text-base text-gray-800">{option.title}</span>
+                                <span className="text-orange-600 font-semibold">{option.totalValue}</span>
+                                <span className="text-xs text-gray-500 mt-1">{option.details}</span>
+                            </button>
+                        ))}
+                    </div>
+                    {/* FIM DO NOVO BLOCO */}
+
                 </div>
             )}
 
@@ -143,12 +151,10 @@ const ContactFormGamified = () => {
                     <h3 className="text-lg font-semibold text-center">Estamos quase lá! Conte-nos mais.</h3>
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Qual seu real interesse em montar uma franquia?</label>
-                        {/* MODIFICADO */}
                         <Textarea name="realInterest" value={formData.realInterest} onChange={handleInputChange} placeholder="Ex: Busco minha independência financeira..." className="min-h-[100px] text-base" required />
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Qual a cidade/estado de interesse?</label>
-                        {/* MODIFICADO */}
                         <Input name="location" value={formData.location} onChange={handleInputChange} placeholder="Ex: Curitiba / PR" required className="text-base" />
                     </div>
                 </div>
