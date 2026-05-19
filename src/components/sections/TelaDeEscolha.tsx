@@ -10,24 +10,26 @@ const overlay: React.CSSProperties = {
   backgroundColor: "rgba(0, 0, 0, 0.75)",
   display: "flex",
   justifyContent: "center",
-  alignItems: "center",
+  alignItems: "flex-end",
   zIndex: 1000,
   backdropFilter: "blur(8px)",
   WebkitBackdropFilter: "blur(8px)",
-  padding: "16px",
+  padding: "0",
 };
 
 const container: React.CSSProperties = {
-  background: "rgba(15, 15, 15, 0.65)",
-  borderRadius: "24px",
-  padding: "clamp(32px, 8vw, 52px) clamp(24px, 6vw, 44px)",
+  background: "rgba(15, 15, 15, 0.90)",
+  borderRadius: "24px 24px 0 0",
+  padding: "28px 24px 36px",
   textAlign: "center",
   backdropFilter: "blur(24px)",
   WebkitBackdropFilter: "blur(24px)",
   border: "1px solid rgba(255,255,255,0.1)",
-  boxShadow: "0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)",
+  borderBottom: "none",
+  boxShadow: "0 -8px 32px rgba(0,0,0,0.5)",
   width: "100%",
-  maxWidth: "460px",
+  maxWidth: "540px",
+  margin: "0 auto",
   boxSizing: "border-box",
   fontFamily: "'Inter', 'Poppins', system-ui, sans-serif",
 };
@@ -44,7 +46,7 @@ const title: React.CSSProperties = {
 const subtitle: React.CSSProperties = {
   fontSize: "clamp(0.9rem, 3.5vw, 1rem)",
   color: "rgba(220,220,220,0.8)",
-  marginBottom: "36px",
+  marginBottom: "20px",
   fontWeight: 400,
 };
 
@@ -134,6 +136,12 @@ export function TelaDeEscolha({ onFranchiseClick }: TelaDeEscolhaProps) {
   return (
     <div style={overlay}>
       <div style={container}>
+        {/* handle */}
+        <div style={{ width: 40, height: 4, borderRadius: 2, background: "rgba(255,255,255,0.2)", margin: "0 auto 20px" }} />
+
+        {/* logo */}
+        <img src="/images/logo2.PNG" alt="Dog da Vila" style={{ width: 80, height: "auto", margin: "0 auto 16px", display: "block", filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.5))" }} />
+
         {tela === "inicio" && (
           <>
             <h1 style={title}>Seja bem-vindo!</h1>
