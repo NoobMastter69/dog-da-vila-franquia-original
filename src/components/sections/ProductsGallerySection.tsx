@@ -67,7 +67,7 @@ const ProductsGallerySection = () => {
         </div>
 
         <Carousel
-          opts={{ loop: true, align: "start" }}
+          opts={{ loop: false, align: "start" }}
           className="w-full max-w-5xl mx-auto"
         >
           <CarouselContent className="-ml-4">
