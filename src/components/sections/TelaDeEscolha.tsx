@@ -20,7 +20,7 @@ const overlay: React.CSSProperties = {
 const container: React.CSSProperties = {
   background: "rgba(15, 15, 15, 0.90)",
   borderRadius: "24px 24px 0 0",
-  padding: "28px 24px 36px",
+  padding: "28px 24px 40px",
   textAlign: "center",
   backdropFilter: "blur(24px)",
   WebkitBackdropFilter: "blur(24px)",
@@ -29,9 +29,13 @@ const container: React.CSSProperties = {
   boxShadow: "0 -8px 32px rgba(0,0,0,0.5)",
   width: "100%",
   maxWidth: "540px",
+  minHeight: "70vh",
   margin: "0 auto",
   boxSizing: "border-box",
   fontFamily: "'Inter', 'Poppins', system-ui, sans-serif",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
 };
 
 const title: React.CSSProperties = {
