@@ -1,49 +1,40 @@
-import { Button } from "@/components/ui/button";
-
 const HeroSection = () => {
-  const scrollToFranchiseSection = () => {
-    const section = document.getElementById("contato");
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
+  const scrollToContact = () => {
+    document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section id="inicio" className="relative h-[500px] md:h-[600px] overflow-hidden">
+    <section id="inicio" className="relative min-h-[92vh] flex items-center overflow-hidden">
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat hero-background-image"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('/images/restaurante2.png')",
-          filter: " brightness(0.4) sepia(0.3) hue-rotate(5deg)",
+          filter: "brightness(0.35)",
         }}
       />
-      <div className="relative z-10 container mx-auto flex flex-col items-center justify-center h-full px-4 text-center">
+
+      <div className="relative z-10 container mx-auto px-4 flex flex-col items-center justify-center text-center py-12">
         <img
           src="/images/logo2.PNG"
           alt="Dog da Vila"
-          className="w-56 sm:w-72 md:w-80 mt-8 mb-2 animate-fade-in"
+          className="w-44 sm:w-56 md:w-64 mb-4 drop-shadow-2xl"
         />
-        <h1 className="text-2xl sm:text-3xl md:text-4xl text-white font-bold mb-2 animate-fade-in">
-          Simplesmente Diferente
+
+        <h1 className="text-4xl sm:text-5xl md:text-6xl text-white font-bold mb-4 leading-tight">
+          Simplesmente<br />
+          <span className="text-orange-400">Diferente</span>
         </h1>
-        <div className="mt-1 animate-fade-in flex justify-center">
-          <Button
-            className="bg-orange-500 hover:bg-orange-600 text-white rounded-full
-                       text-xl py-10 px-10
-                       md:text-2xl md:py-12 md:px-16
-                       lg:text-3xl lg:py-16 lg:px-28
-                       shadow-xl
-                       transition-transform duration-200
-                       hover:scale-105"
-            onClick={scrollToFranchiseSection}
-          >
-            Seja um Franqueado
-          </Button>
-        </div>
+
+        <button
+          onClick={scrollToContact}
+          className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-3.5 rounded-full text-base transition-all duration-200 hover:-translate-y-0.5 shadow-lg hover:shadow-orange-500/30 mb-4"
+        >
+          Seja um Franqueado
+        </button>
+
       </div>
     </section>
   );
 };
 
 export default HeroSection;
-

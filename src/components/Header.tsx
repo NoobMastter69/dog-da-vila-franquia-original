@@ -1,74 +1,85 @@
 import { useState } from 'react';
 import { MenuIcon, X } from 'lucide-react';
 
+const navLinks = [
+  { label: 'Início', href: '#inicio' },
+  { label: 'Sobre Nós', href: '#sobre-nos' },
+  { label: 'Por que investir?', href: '#porque-investir' },
+  { label: 'Números', href: '#sobre' },
+  { label: 'Investimento', href: '#investimento' },
+  { label: 'Produtos', href: '#produtos' },
+];
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // 1. CRIAMOS UMA FUNÇÃO PARA CUIDAR DO CLIQUE E DA ROLAGEM
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    e.preventDefault(); // Previne o comportamento padrão do link
-
-    const targetId = e.currentTarget.href.split('#')[1]; // Pega o ID do href (ex: "sobre")
-    const targetElement = document.getElementById(targetId); // Encontra o elemento na página
-
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Rola suavemente até o elemento
-    }
-
-    // Fecha o menu mobile se estiver aberto
-    if (isMenuOpen) {
-      setIsMenuOpen(false);
-    }
-  };
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const id = e.currentTarget.getAttribute('href')?.replace('#', '');
+    const el = id ? document.getElementById(id) : null;
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setIsMenuOpen(false);
   };
 
   return (
-    <header className="bg-white shadow-md fixed top-0 w-full z-50">
+    <header className="bg-white/95 backdrop-blur-sm border-b border-zinc-100 fixed top-0 w-full z-50">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-        
-          <div className="flex-shrink-0">
-            <a href="#inicio" onClick={handleNavClick} className="flex items-center">
-              <img src="/images/logo2.PNG" alt="Dog da Vila" className="h-14" />
-            </a>
-          </div>
+        <div className="flex items-center justify-between h-18 py-3">
 
-          {/* Menu para Desktop */}
-          {/* 2. ADICIONAMOS O onClick EM TODOS OS LINKS */}
-          <nav className="hidden md:flex space-x-8 items-center">
-            <a href="#inicio" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Início</a>
-            <a href="#porque-investir" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Porque Investir?</a>
-             <a href="#sobre" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Sobre Nós</a>
-            <a href="#investimento" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Investimento</a>
-            <a href="#produtos" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Produtos</a>
+          <a href="#inicio" onClick={handleNavClick} className="flex-shrink-0">
+            <img src="/images/logo2.PNG" alt="Dog da Vila" className="h-12" />
+          </a>
+
+          <nav className="hidden md:flex items-center gap-7">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={handleNavClick}
+                className="text-sm font-medium text-zinc-600 hover:text-orange-500 transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="#contato"
+              onClick={handleNavClick}
+              className="ml-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors"
+            >
+              Seja Franqueado
+            </a>
           </nav>
 
-          {/* Botão de Menu Mobile */}
-          <div className="md:hidden">
-            <button
-              type="button"
-              className="text-gray-800 hover:text-orange-500"
-              onClick={toggleMenu}
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
-            </button>
-          </div>
+          <button
+            type="button"
+            className="md:hidden text-zinc-700 hover:text-orange-500 transition-colors"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
+          </button>
         </div>
 
-        {/* Menu Mobile */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t bg-white shadow-sm">
-            {/* 3. ADICIONAMOS O onClick EM TODOS OS LINKS DO MENU MOBILE TAMBÉM */}
-            <div className="flex flex-col space-y-4 px-4">
-              <a href="#inicio" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Início</a>
-              <a href="#porque-investir" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Porque Investir?</a>
-               <a href="#sobre" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Sobre Nós</a>
-              <a href="#investimento" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Investimento</a>
-              <a href="#produtos" onClick={handleNavClick} className="text-gray-800 hover:text-orange-500 font-medium">Produtos</a>
+          <div className="md:hidden py-4 border-t border-zinc-100">
+            <div className="flex flex-col gap-4 px-2">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={handleNavClick}
+                  className="text-sm font-medium text-zinc-700 hover:text-orange-500 transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <a
+                href="#contato"
+                onClick={handleNavClick}
+                className="bg-orange-500 text-white text-sm font-semibold px-5 py-2.5 rounded-full text-center transition-colors hover:bg-orange-600"
+              >
+                Seja Franqueado
+              </a>
             </div>
           </div>
         )}

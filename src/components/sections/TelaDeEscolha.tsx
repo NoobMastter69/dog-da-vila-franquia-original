@@ -1,99 +1,121 @@
 import React, { useState } from "react";
+import { ShoppingBag, Store, ArrowLeft, MapPin } from "lucide-react";
 
-// Estilos otimizados para responsividade 📱
-const styles: { [key: string]: React.CSSProperties } = {
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.85)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    zIndex: 1000,
-    backdropFilter: "blur(10px)",
-    padding: "15px", // Adicionado para garantir margem em telas muito pequenas
-  },
-  container: {
-    background: "rgba(255, 255, 255, 0.1)",
-    borderRadius: "20px",
-    // NOVO: Padding adaptável
-    padding: "clamp(30px, 8vw, 50px) clamp(20px, 6vw, 40px)",
-    textAlign: "center",
-    boxShadow: "0 0 25px rgba(0,0,0,0.4)",
-    backdropFilter: "blur(20px)",
-    WebkitBackdropFilter: "blur(20px)",
-    border: "1px solid rgba(255,255,255,0.2)",
-    width: "100%", // Alterado de 90% para 100% (o padding no overlay controla a margem)
-    maxWidth: "480px",
-    boxSizing: "border-box", // Garante que o padding não aumente a largura total
-  },
-  title: {
-    // NOVO: Fonte responsiva com clamp(MIN, IDEAL, MAX)
-    fontSize: "clamp(1.8rem, 7vw, 2.5rem)",
-    color: "#ff8c00",
-    fontWeight: "bold",
-    marginBottom: "10px",
-    letterSpacing: "1px",
-  },
-  subtitle: {
-    // NOVO: Fonte responsiva
-    fontSize: "clamp(1rem, 4vw, 1.2rem)",
-    color: "#eee",
-    marginBottom: "40px",
-  },
-  button: {
-    display: "block",
-    padding: "16px 24px",
-    color: "#fff",
-    border: "none",
-    borderRadius: "12px",
-    fontSize: "clamp(1rem, 4vw, 1.1rem)", // NOVO: Fonte responsiva
-    fontWeight: "600",
-    cursor: "pointer",
-    textDecoration: "none",
-    transition: "transform 0.2s ease, box-shadow 0.3s ease",
-    width: "100%",
-    textAlign: "center",
-  },
-  orderButton: {
-    background: "linear-gradient(135deg, #ff8c00, #ff6700)",
-    boxShadow: "0 4px 15px rgba(255,140,0,0.5)",
-  },
-  franchiseButton: {
-    background: "linear-gradient(135deg, #1f1f1f, #3a3a3a)",
-    boxShadow: "0 4px 15px rgba(0,0,0,0.6)",
-  },
-  lojaButton: {
-    background: "linear-gradient(135deg, #262626, #4d4d4d)",
-    boxShadow: "0 4px 15px rgba(255,255,255,0.15)",
-  },
-  buttonHover: {
-    transform: "scale(1.03)",
-    boxShadow: "0 6px 20px rgba(0,0,0,0.3)",
-  },
-  options: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "20px",
-  },
-  backButton: {
-    marginTop: "30px",
-    background: "transparent",
-    border: "2px solid #ff8c00",
-    color: "#ff8c00",
-    fontWeight: "600",
-    borderRadius: "12px",
-    padding: "12px 24px",
-    cursor: "pointer",
-    transition: "background 0.3s ease, color 0.3s ease",
-  },
-  backButtonHover: {
-    background: "#ff8c00",
-    color: "#fff",
-  },
+const overlay: React.CSSProperties = {
+  position: "fixed",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  backgroundColor: "rgba(0, 0, 0, 0.75)",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  zIndex: 1000,
+  backdropFilter: "blur(8px)",
+  WebkitBackdropFilter: "blur(8px)",
+  padding: "16px",
+};
+
+const container: React.CSSProperties = {
+  background: "rgba(15, 15, 15, 0.65)",
+  borderRadius: "24px",
+  padding: "clamp(32px, 8vw, 52px) clamp(24px, 6vw, 44px)",
+  textAlign: "center",
+  backdropFilter: "blur(24px)",
+  WebkitBackdropFilter: "blur(24px)",
+  border: "1px solid rgba(255,255,255,0.1)",
+  boxShadow: "0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)",
+  width: "100%",
+  maxWidth: "460px",
+  boxSizing: "border-box",
+  fontFamily: "'Inter', 'Poppins', system-ui, sans-serif",
+};
+
+const title: React.CSSProperties = {
+  fontSize: "clamp(1.6rem, 6vw, 2.2rem)",
+  color: "#ff8c00",
+  fontWeight: 700,
+  marginBottom: "8px",
+  letterSpacing: "-0.3px",
+  lineHeight: 1.2,
+};
+
+const subtitle: React.CSSProperties = {
+  fontSize: "clamp(0.9rem, 3.5vw, 1rem)",
+  color: "rgba(220,220,220,0.8)",
+  marginBottom: "36px",
+  fontWeight: 400,
+};
+
+const options: React.CSSProperties = {
+  display: "flex",
+  flexDirection: "column",
+  gap: "14px",
+};
+
+const baseBtn: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "10px",
+  padding: "15px 24px",
+  color: "#fff",
+  border: "none",
+  borderRadius: "14px",
+  fontSize: "clamp(0.95rem, 3.5vw, 1.05rem)",
+  fontWeight: 600,
+  cursor: "pointer",
+  textDecoration: "none",
+  transition: "transform 0.18s ease, filter 0.18s ease",
+  width: "100%",
+  textAlign: "center",
+  letterSpacing: "0.2px",
+};
+
+const orderBtn: React.CSSProperties = {
+  background: "linear-gradient(135deg, #ff9500, #e65c00)",
+  boxShadow: "0 4px 14px rgba(230,92,0,0.35)",
+};
+
+const franchiseBtn: React.CSSProperties = {
+  background: "linear-gradient(135deg, #1c1c1e, #2c2c2e)",
+  border: "1px solid rgba(255,255,255,0.1)",
+  boxShadow: "0 4px 14px rgba(0,0,0,0.4)",
+};
+
+const lojaBtn: React.CSSProperties = {
+  background: "linear-gradient(135deg, #222, #3a3a3a)",
+  border: "1px solid rgba(255,255,255,0.08)",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.35)",
+};
+
+const backBtn: React.CSSProperties = {
+  marginTop: "24px",
+  background: "transparent",
+  border: "1.5px solid rgba(255,140,0,0.6)",
+  color: "#ff8c00",
+  fontWeight: 600,
+  borderRadius: "12px",
+  padding: "11px 24px",
+  cursor: "pointer",
+  transition: "background 0.2s ease, border-color 0.2s ease",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "8px",
+  width: "100%",
+  fontSize: "0.95rem",
+};
+
+const hoverStyle: React.CSSProperties = {
+  transform: "translateY(-2px)",
+  filter: "brightness(1.1)",
+};
+
+const backHoverStyle: React.CSSProperties = {
+  background: "rgba(255,140,0,0.15)",
+  borderColor: "#ff8c00",
 };
 
 interface TelaDeEscolhaProps {
@@ -102,8 +124,6 @@ interface TelaDeEscolhaProps {
 
 export function TelaDeEscolha({ onFranchiseClick }: TelaDeEscolhaProps) {
   const [tela, setTela] = useState<"inicio" | "lojas">("inicio");
-  
-  // NOVO: Estados de hover individuais para cada botão
   const [hoverOrder, setHoverOrder] = useState(false);
   const [hoverFranchise, setHoverFranchise] = useState(false);
   const [hoverLoja1, setHoverLoja1] = useState(false);
@@ -112,36 +132,30 @@ export function TelaDeEscolha({ onFranchiseClick }: TelaDeEscolhaProps) {
   const [hoverBack, setHoverBack] = useState(false);
 
   return (
-    <div style={styles.overlay}>
-      <div style={styles.container}>
+    <div style={overlay}>
+      <div style={container}>
         {tela === "inicio" && (
           <>
-            <h1 style={styles.title}>Seja bem-vindo!</h1>
-            <p style={styles.subtitle}>O que você deseja fazer?</p>
-            <div style={styles.options}>
+            <h1 style={title}>Seja bem-vindo!</h1>
+            <p style={subtitle}>O que você deseja fazer?</p>
+            <div style={options}>
               <button
                 onClick={() => setTela("lojas")}
-                style={{
-                  ...styles.button,
-                  ...styles.orderButton,
-                  ...(hoverOrder ? styles.buttonHover : {}),
-                }}
+                style={{ ...baseBtn, ...orderBtn, ...(hoverOrder ? hoverStyle : {}) }}
                 onMouseEnter={() => setHoverOrder(true)}
                 onMouseLeave={() => setHoverOrder(false)}
               >
+                <ShoppingBag size={20} />
                 Fazer um Pedido
               </button>
 
               <button
                 onClick={onFranchiseClick}
-                style={{
-                  ...styles.button,
-                  ...styles.franchiseButton,
-                  ...(hoverFranchise ? styles.buttonHover : {}),
-                }}
+                style={{ ...baseBtn, ...franchiseBtn, ...(hoverFranchise ? hoverStyle : {}) }}
                 onMouseEnter={() => setHoverFranchise(true)}
                 onMouseLeave={() => setHoverFranchise(false)}
               >
+                <Store size={20} />
                 Quero ser um Franqueado
               </button>
             </div>
@@ -150,64 +164,53 @@ export function TelaDeEscolha({ onFranchiseClick }: TelaDeEscolhaProps) {
 
         {tela === "lojas" && (
           <>
-            <h1 style={styles.title}>Qual unidade você prefere?</h1>
-            <p style={styles.subtitle}>Escolha a unidade mais próxima de você para fazer o pedido.</p>
+            <h1 style={title}>Qual unidade você prefere?</h1>
+            <p style={subtitle}>Escolha a mais próxima de você.</p>
 
-            <div style={styles.options}>
+            <div style={options}>
               <a
                 href="https://pedido.anota.ai/loja/dogdavilaooriginal"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  ...styles.button,
-                  ...styles.lojaButton,
-                  ...(hoverLoja1 ? styles.buttonHover : {}),
-                }}
+                style={{ ...baseBtn, ...lojaBtn, ...(hoverLoja1 ? hoverStyle : {}) }}
                 onMouseEnter={() => setHoverLoja1(true)}
                 onMouseLeave={() => setHoverLoja1(false)}
               >
-                Dog da Vila - Jd. Rosana
+                <MapPin size={18} />
+                Jd. Rosana
               </a>
               <a
                 href="https://pedido.anota.ai/loja/dog-da-vila2"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  ...styles.button,
-                  ...styles.lojaButton,
-                  ...(hoverLoja2 ? styles.buttonHover : {}),
-                }}
+                style={{ ...baseBtn, ...lojaBtn, ...(hoverLoja2 ? hoverStyle : {}) }}
                 onMouseEnter={() => setHoverLoja2(true)}
                 onMouseLeave={() => setHoverLoja2(false)}
               >
-                Dog da Vila - Jd. Independência
+                <MapPin size={18} />
+                Jd. Independência
               </a>
               <a
                 href="https://pedido.anota.ai/loja/fabuloso-dog-da-vila-hot-dog-burguers"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  ...styles.button,
-                  ...styles.lojaButton,
-                  ...(hoverLoja3 ? styles.buttonHover : {}),
-                }}
+                style={{ ...baseBtn, ...lojaBtn, ...(hoverLoja3 ? hoverStyle : {}) }}
                 onMouseEnter={() => setHoverLoja3(true)}
                 onMouseLeave={() => setHoverLoja3(false)}
               >
-                Dog da Vila - Un. Caieiras
+                <MapPin size={18} />
+                Un. Caieiras
               </a>
             </div>
 
             <button
-              style={{
-                ...styles.backButton,
-                ...(hoverBack ? styles.backButtonHover : {}),
-              }}
+              style={{ ...backBtn, ...(hoverBack ? backHoverStyle : {}) }}
               onMouseEnter={() => setHoverBack(true)}
               onMouseLeave={() => setHoverBack(false)}
               onClick={() => setTela("inicio")}
             >
-              ← Voltar
+              <ArrowLeft size={16} />
+              Voltar
             </button>
           </>
         )}
