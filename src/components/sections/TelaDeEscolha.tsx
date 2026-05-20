@@ -14,7 +14,7 @@ const overlay: React.CSSProperties = {
   zIndex: 1000,
   backdropFilter: "blur(8px)",
   WebkitBackdropFilter: "blur(8px)",
-  paddingTop: "18vh",
+  paddingTop: "12vh",
 };
 
 const container: React.CSSProperties = {
@@ -33,7 +33,7 @@ const container: React.CSSProperties = {
   fontFamily: "'Inter', 'Poppins', system-ui, sans-serif",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
+  justifyContent: "flex-start",
 };
 
 const title: React.CSSProperties = {
