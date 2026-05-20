@@ -9,12 +9,12 @@ const overlay: React.CSSProperties = {
   height: "100%",
   backgroundColor: "rgba(0, 0, 0, 0.75)",
   display: "flex",
-  justifyContent: "center",
-  alignItems: "flex-end",
+  flexDirection: "column",
+  justifyContent: "flex-end",
   zIndex: 1000,
   backdropFilter: "blur(8px)",
   WebkitBackdropFilter: "blur(8px)",
-  padding: "0",
+  paddingTop: "18vh",
 };
 
 const container: React.CSSProperties = {
@@ -28,9 +28,7 @@ const container: React.CSSProperties = {
   borderBottom: "none",
   boxShadow: "0 -8px 32px rgba(0,0,0,0.5)",
   width: "100%",
-  maxWidth: "540px",
-  minHeight: "70vh",
-  margin: "0 auto",
+  flex: 1,
   boxSizing: "border-box",
   fontFamily: "'Inter', 'Poppins', system-ui, sans-serif",
   display: "flex",
