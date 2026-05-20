@@ -4,7 +4,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="inicio" className="relative min-h-[92vh] flex items-center overflow-hidden">
+    <section id="inicio" className="relative min-h-[60vh] md:min-h-[92vh] flex items-center overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{

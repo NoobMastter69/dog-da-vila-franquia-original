@@ -20,7 +20,7 @@ const overlay: React.CSSProperties = {
 const container: React.CSSProperties = {
   background: "rgba(15, 15, 15, 0.65)",
   borderRadius: "24px",
-  padding: "clamp(32px, 8vw, 52px) clamp(24px, 6vw, 44px)",
+  padding: "clamp(28px, 8vw, 52px) clamp(16px, 4vw, 44px)",
   textAlign: "center",
   backdropFilter: "blur(24px)",
   WebkitBackdropFilter: "blur(24px)",
@@ -134,6 +134,8 @@ export function TelaDeEscolha({ onFranchiseClick }: TelaDeEscolhaProps) {
   return (
     <div style={overlay}>
       <div style={container}>
+        <img src="/images/logo2.PNG" alt="Dog da Vila" style={{ width: 90, height: "auto", margin: "0 auto 20px", display: "block", filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.5))" }} />
+
         {tela === "inicio" && (
           <>
             <h1 style={title}>Seja bem-vindo!</h1>
