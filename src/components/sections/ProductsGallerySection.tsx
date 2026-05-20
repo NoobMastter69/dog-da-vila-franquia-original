@@ -37,11 +37,11 @@ const products = [
 const ProductCard = ({ product }: { product: typeof products[0] }) => (
   <div className="p-1 h-full">
     <div className="bg-white rounded-2xl overflow-hidden border border-zinc-100 shadow-sm hover:shadow-md transition-shadow duration-300 group flex flex-col h-full">
-      <div className="overflow-hidden h-64 flex-shrink-0 bg-zinc-50 flex items-center justify-center">
+      <div className="overflow-hidden h-56 flex-shrink-0">
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-cover object-bottom transition-transform duration-500 group-hover:scale-105"
         />
       </div>
       <div className="p-5 flex flex-col flex-1">
