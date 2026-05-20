@@ -3,7 +3,7 @@ import { Clock, Store, CalendarDays } from "lucide-react";
 const numbers = [
   { icon: Clock, value: "18-24", label: "Meses de Payback" },
   { icon: Store, value: "3", label: "Unidades em operação" },
-  { icon: CalendarDays, value: "2012", label: "Since" },
+  { icon: CalendarDays, value: "2012", label: "Desde" },
 ];
 
 const NumbersSection = () => {
