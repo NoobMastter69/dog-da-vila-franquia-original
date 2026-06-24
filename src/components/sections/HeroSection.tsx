@@ -60,7 +60,7 @@ const HeroSection = () => {
 
       <div style={{ position: 'relative', maxWidth: 1240, margin: '0 auto', padding: '80px 24px 80px', width: '100%' }}>
         {/* H1 */}
-        <h1 id="franqueado" style={{ fontFamily: "'Veneer', sans-serif", fontSize: 'clamp(72px,19vw,150px)', lineHeight: .9, textTransform: 'uppercase', margin: '0 0 24px', letterSpacing: '0', maxWidth: '14ch', color: '#F4EEE6' }}>
+        <h1 id="franqueado" style={{ fontFamily: "'Veneer', sans-serif", fontSize: 'clamp(58px,16.5vw,150px)', lineHeight: .92, textTransform: 'uppercase', margin: '0 0 24px', letterSpacing: '0', maxWidth: '14ch', color: '#F4EEE6' }}>
           Seja um{' '}
           <span style={{ color: '#FF6B00' }}>franqueado</span>
         </h1>
