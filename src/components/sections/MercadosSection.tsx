@@ -1,15 +1,13 @@
 const markets = [
   { r: 'Sudeste', s: 'Vagas abertas' },
   { r: 'Sul', s: 'Vagas abertas' },
-  { r: 'Nordeste', s: 'Últimas praças' },
+  { r: 'Nordeste', s: 'Vagas abertas' },
   { r: 'Centro-Oeste', s: 'Vagas abertas' },
-  { r: 'Norte', s: 'Em expansão' },
+  { r: 'Norte', s: 'Vagas abertas' },
 ];
 
 const tagColor: Record<string, string> = {
   'Vagas abertas': '#FF6B00',
-  'Últimas praças': 'rgba(255,107,0,.5)',
-  'Em expansão': '#FFB07A',
 };
 
 const MercadosSection = () => {
@@ -35,12 +33,6 @@ const MercadosSection = () => {
           <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', marginBottom: 32, fontSize: 12.5, color: '#9A938B' }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7 }}>
               <span style={{ width: 13, height: 13, borderRadius: 3, background: '#FF6B00', display: 'inline-block' }} />Vagas abertas
-            </span>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7 }}>
-              <span style={{ width: 13, height: 13, borderRadius: 3, background: 'rgba(255,107,0,.5)', display: 'inline-block' }} />Últimas praças
-            </span>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7 }}>
-              <span style={{ width: 13, height: 13, borderRadius: 3, border: '1px dashed rgba(255,107,0,.55)', display: 'inline-block' }} />Em expansão
             </span>
           </div>
           <button onClick={() => scrollTo('contato')}
