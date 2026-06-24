@@ -20,7 +20,7 @@ const OperationSection = () => {
           <button onClick={() => scrollTo('contato')}
             style={{ background: 'transparent', color: '#FF6B00', border: '1.5px solid #FF6B00', fontWeight: 700, fontSize: 15, letterSpacing: '.03em', textTransform: 'uppercase', padding: '15px 28px', borderRadius: 4, cursor: 'pointer' }}
             className="hover:bg-[#FF6B00] hover:text-[#1a1410] transition-colors">
-            Entre em contato
+            Quero ser franqueado
           </button>
         </div>
 

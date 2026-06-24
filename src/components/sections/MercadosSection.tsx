@@ -46,7 +46,7 @@ const MercadosSection = () => {
           <button onClick={() => scrollTo('contato')}
             style={{ background: '#FF6B00', color: '#1a1410', border: 'none', fontWeight: 700, fontSize: 15, letterSpacing: '.03em', textTransform: 'uppercase', padding: '16px 30px', borderRadius: 4, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 10 }}
             className="hover:bg-[#ff8124] transition-colors">
-            Entre em contato
+            Quero ser franqueado
           </button>
         </div>
 
