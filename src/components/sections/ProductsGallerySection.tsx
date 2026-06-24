@@ -30,7 +30,7 @@ const ProductsGallerySection = () => {
         <div style={{ display: 'grid', gap: 24 }} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {difers.map(d => (
             <div key={d.n} style={{ background: '#211810', border: '1px solid rgba(255,255,255,.08)', borderRadius: 8, overflow: 'hidden' }}>
-              <img src={d.img} alt={d.t} style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', objectPosition: 'center' }} />
+              <img src={d.img} alt={d.t} style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
               <div style={{ padding: '24px 28px 28px' }}>
                 <div style={{ fontFamily: "'Veneer', sans-serif", fontSize: 38, color: 'rgba(255,107,0,.4)', lineHeight: 1, marginBottom: 10 }}>{d.n}</div>
                 <div style={{ fontFamily: "'Veneer', sans-serif", fontSize: 22, textTransform: 'uppercase', marginBottom: 10, color: '#F4EEE6' }}>{d.t}</div>
