@@ -1,27 +1,20 @@
 import ContactForm from "@/components/ContactForm";
 
-const ContactSection = () => {
-  return (
-    <section id="contato" className="py-24 bg-orange-500">
-      <div className="container mx-auto px-4">
-
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-            <span className="text-white">NÃO PERCA MAIS TEMPO,</span><br />
-            <span className="text-zinc-900">SEJA UM FRANQUEADO DOG DA VILA.</span>
-          </h2>
-          <div className="flex justify-center">
-            <div className="w-24 h-1 bg-zinc-900 rounded-full"></div>
-          </div>
-        </div>
-
-        <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-2xl p-8">
-          <ContactForm />
-        </div>
-
+const ContactSection = () => (
+  <section id="contato" style={{ padding: '110px 0', background: '#FF6B00' }}>
+    <div style={{ maxWidth: 1000, margin: '0 auto', padding: '0 32px' }}>
+      <div style={{ textAlign: 'center', marginBottom: 48 }}>
+        <div style={{ color: '#1A120C', fontSize: 13, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', marginBottom: 16 }}>Bora começar</div>
+        <h2 style={{ fontFamily: "'Veneer', sans-serif", fontSize: 'clamp(52px,7.2vw,118px)', lineHeight: .92, textTransform: 'uppercase', margin: '0 0 18px', color: '#1A120C' }}>
+          Vem ser da Vila!
+        </h2>
+        <p style={{ fontSize: 18, color: 'rgba(26,18,12,.82)', maxWidth: '52ch', margin: '0 auto', lineHeight: 1.55, fontWeight: 500 }}>
+          Ficamos felizes que você tem interesse em ser um franqueado. Pra continuar, precisamos te conhecer um pouco mais!
+        </p>
       </div>
-    </section>
-  );
-};
+      <ContactForm />
+    </div>
+  </section>
+);
 
 export default ContactSection;

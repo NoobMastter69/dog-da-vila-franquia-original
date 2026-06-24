@@ -1,84 +1,33 @@
-import { Store, TrendingDown, BadgeCheck, UtensilsCrossed, HeartHandshake } from "lucide-react";
-
-const benefits = [
-  {
-    icon: Store,
-    title: "Modelo Enxuto",
-    description: "Operação simplificada, ideal para começar de forma simples e rapida!",
-  },
-  {
-    icon: TrendingDown,
-    title: "Baixo investimento",
-    description: "Comece seu negócio com pouco capital inicial!",
-  },
-  {
-    icon: BadgeCheck,
-    title: "Sucesso comprovado",
-    description: "Produto aprovado e reconhecido regionalmente.",
-  },
-  {
-    icon: UtensilsCrossed,
-    title: "Cardápio variado",
-    description: "Atrativo a um grupo amplamente diversificado!",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Suporte dedicado",
-    description: "Acompanhamento completo do franqueado.",
-  },
+const ratings = [
+  { p: 'Reclame Aqui', v: '8.7', m: '/10' },
+  { p: 'Google', v: '4.8', m: '/5' },
+  { p: 'TripAdvisor', v: '4.9', m: '/5' },
+  { p: 'iFood', v: '4.8', m: '/5' },
 ];
 
-const BenefitsSection = () => {
-  return (
-    <section id="porque-investir" className="py-24 bg-white">
-      <div className="container mx-auto px-4">
-
-        <div className="text-center mb-14">
-          <p className="text-orange-500 text-sm font-semibold uppercase tracking-widest mb-3">
-            Vantagens
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900">
-            Por que investir no <span className="text-orange-500">Dog da Vila?</span>
-          </h2>
-        </div>
-
-        <div className="max-w-5xl mx-auto space-y-6">
-          {/* Top row — 3 cards iguais */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {benefits.slice(0, 3).map(({ icon: Icon, title, description }) => (
-              <div
-                key={title}
-                className="bg-zinc-50 rounded-2xl p-6 border border-zinc-100 hover:shadow-md hover:-translate-y-1 transition-all duration-200"
-              >
-                <div className="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center mb-4">
-                  <Icon className="w-6 h-6 text-orange-500" />
-                </div>
-                <h3 className="text-zinc-900 font-semibold mb-2">{title}</h3>
-                <p className="text-zinc-500 text-sm leading-relaxed">{description}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Bottom row — 2 cards maiores cobrindo o espaço */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {benefits.slice(3).map(({ icon: Icon, title, description }) => (
-              <div
-                key={title}
-                className="bg-zinc-50 rounded-2xl p-6 border border-zinc-100 hover:shadow-md hover:-translate-y-1 transition-all duration-200"
-              >
-                <div className="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center mb-4">
-                  <Icon className="w-6 h-6 text-orange-500" />
-                </div>
-                <h3 className="text-zinc-900 font-semibold mb-2">{title}</h3>
-                <p className="text-zinc-500 text-sm leading-relaxed">{description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
+const BenefitsSection = () => (
+  <section style={{ padding: '110px 0', background: '#211810', borderTop: '1px solid rgba(255,255,255,.06)', borderBottom: '1px solid rgba(255,255,255,.06)' }}>
+    <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 32px' }}>
+      <div style={{ textAlign: 'center', marginBottom: 56 }}>
+        <div style={{ color: '#FF6B00', fontSize: 13, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', marginBottom: 16 }}>Prêmios &amp; reconhecimentos</div>
+        <h2 style={{ fontFamily: "'Veneer', sans-serif", fontSize: 'clamp(38px,5vw,68px)', lineHeight: .95, textTransform: 'uppercase', margin: 0, color: '#F4EEE6' }}>
+          Nossos reconhecimentos
+        </h2>
+        <p style={{ fontSize: 14, color: '#9A938B', marginTop: 14 }}>dados referentes a março/26</p>
       </div>
-    </section>
-  );
-};
+
+      <div style={{ display: 'grid', gap: 20 }} className="grid grid-cols-2 md:grid-cols-4">
+        {ratings.map(r => (
+          <div key={r.p} style={{ background: '#1A120C', border: '1px solid rgba(255,255,255,.08)', borderRadius: 8, padding: '28px 24px', textAlign: 'center' }}>
+            <div style={{ fontSize: 13, color: '#9A938B', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 14, minHeight: 32 }}>{r.p}</div>
+            <div style={{ fontFamily: "'Veneer', sans-serif", fontSize: 46, color: '#F4EEE6', lineHeight: 1 }}>
+              {r.v}<span style={{ fontSize: 20, color: '#FF6B00' }}>{r.m}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
 
 export default BenefitsSection;

@@ -1,39 +1,25 @@
-const AboutSection = () => {
-  return (
-    <section id="sobre-nos" className="py-24 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 leading-tight mb-6">
-              Por que o <span className="text-orange-500">Dog da Vila</span> é a melhor escolha?
-            </h2>
-            <p className="text-zinc-500 text-base leading-relaxed mb-4">
-              Com uma experiência única de oferecer hambúrgueres e hot dogs artesanais preparados com ingredientes de qualidade, o Dog da Vila proporciona aos clientes uma experiência gastronômica incrível.
-            </p>
-            <p className="text-zinc-500 text-base leading-relaxed mb-8">
-              Nossa famosa maionese secreta e pães especiais fazem toda a diferença, dando aos nossos clientes aquela sensação de estar provando algo único e especial.
-            </p>
-            <button
-              onClick={() => document.getElementById('produtos')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-7 py-3 rounded-full text-sm transition-all duration-200 hover:-translate-y-0.5"
-            >
-              Conheça nossos produtos
-            </button>
+const AboutSection = () => (
+  <section id="sobre-nos" style={{ padding: '110px 0', background: '#F4EEE6' }}>
+    <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 32px', display: 'grid', gap: 64, alignItems: 'center' }} className="grid grid-cols-1 md:grid-cols-2">
+      <img src="/images/loja.png" alt="Loja Dog da Vila" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', borderRadius: 6 }} />
+      <div>
+        <div style={{ color: '#FF6B00', fontSize: 13, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', marginBottom: 18 }}>O bom dog de rua</div>
+        <h2 style={{ fontFamily: "'Veneer', sans-serif", fontSize: 'clamp(46px,5.6vw,84px)', lineHeight: .95, textTransform: 'uppercase', margin: '0 0 30px', color: '#1A120C' }}>
+          Servindo o melhor dog
+        </h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+          <div style={{ display: 'flex', gap: 20, alignItems: 'center', borderBottom: '1px solid rgba(0,0,0,.14)', paddingBottom: 22 }}>
+            <div style={{ fontFamily: "'Veneer', sans-serif", fontSize: 52, color: '#FF6B00', lineHeight: .85, minWidth: 160 }}>+24 mil</div>
+            <div style={{ fontSize: 17, color: '#4A4039', lineHeight: 1.45 }}>clientes atendidos todos os dias nas lojas Dog da Vila.</div>
           </div>
-
-          <div className="rounded-2xl overflow-hidden shadow-xl">
-            <img
-              src="/images/produto1.png"
-              alt="Hambúrguer Dog da Vila"
-              className="w-full h-full object-cover"
-            />
+          <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
+            <div style={{ fontFamily: "'Veneer', sans-serif", fontSize: 52, color: '#FF6B00', lineHeight: .85, minWidth: 160 }}>+9 mi</div>
+            <div style={{ fontSize: 17, color: '#4A4039', lineHeight: 1.45 }}>dogs e burgers vendidos, do clássico ao gourmet.</div>
           </div>
-
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default AboutSection;

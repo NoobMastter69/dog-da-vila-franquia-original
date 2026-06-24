@@ -1,112 +1,53 @@
-import { ArrowRight } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-
-const products = [
-  {
-    id: 1,
-    name: "Dogão de Prato com Fritas",
-    description: "Pão parmesão da casa, maionese temperada, 3 salsichas, vinagrete, cheddar, requeijão cremoso, bacon e batata palha.",
-    image: "/images/produto1.png",
-  },
-  {
-    id: 2,
-    name: "Street Dog com Carne Moída",
-    description: "Pão especial da casa, maionese temperada, 2 salsichas, carne moída temperada, cheddar, requeijão e batata palha.",
-    image: "/images/produto2.png",
-  },
-  {
-    id: 3,
-    name: "American Dog Bacon",
-    description: "Maionese temperada, 2 salsichas, ketchup, milho, vinagrete, bacon, purê de batata in natura e batata palha. Prensado.",
-    image: "/images/produto3.png",
-  },
-  {
-    id: 4,
-    name: "Burguer Top Gourmet",
-    description: "Ingredientes secretos do chef que vão te surpreender a cada mordida.",
-    image: "/images/produto6.png",
-  },
+const difers = [
+  { n: '01', t: 'Dogão de Prato', d: 'Pão parmesão da casa, maionese temperada, 3 salsichas, cheddar, requeijão e batata palha.', img: '/images/produto1.png' },
+  { n: '02', t: 'Street Dog', d: 'Pão especial, carne moída temperada, cheddar, requeijão cremoso e molho da casa.', img: '/images/produto2.png' },
+  { n: '03', t: 'American Dog Bacon', d: 'Prensado na chapa com purê de batata in natura, bacon crocante e molhos exclusivos.', img: '/images/produto3.png' },
+  { n: '04', t: 'Molhos da casa', d: 'Receitas autorais que só existem aqui na Vila. O segredo que faz a diferença.', img: '/images/produto4.png' },
+  { n: '05', t: 'Burguer Top Gourmet', d: 'Ingredientes secretos do chef que vão te surpreender a cada mordida.', img: '/images/produto5.png' },
+  { n: '06', t: 'Mania pra todo mundo', d: 'Opções pra toda família: do clássico ao gourmet, do kids ao combão. Sempre tem algo certo pra você.', img: '/images/produto6.png' },
 ];
 
-const ProductCard = ({ product }: { product: typeof products[0] }) => (
-  <div className="p-1 h-full">
-    <div className="bg-white rounded-2xl overflow-hidden border border-zinc-100 shadow-sm hover:shadow-md transition-shadow duration-300 group flex flex-col h-full">
-      <div className="overflow-hidden h-56 flex-shrink-0">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-cover object-bottom transition-transform duration-500 group-hover:scale-105"
-        />
-      </div>
-      <div className="p-5 flex flex-col flex-1">
-        <h3 className="font-semibold text-zinc-900 text-sm leading-snug mb-2">{product.name}</h3>
-        <p className="text-zinc-400 text-xs leading-relaxed line-clamp-3">{product.description}</p>
-      </div>
-    </div>
-  </div>
-);
-
 const ProductsGallerySection = () => {
-  return (
-    <section id="produtos" className="py-24 bg-white">
-      <div className="container mx-auto px-4">
+  const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
-        <div className="text-center mb-14">
-          <p className="text-orange-500 text-sm font-semibold uppercase tracking-widest mb-3">
-            Cardápio
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900">
-            Nossos <span className="text-orange-500">Produtos</span>
-          </h2>
+  return (
+    <section id="produtos" style={{ padding: '120px 0', background: '#1A120C' }}>
+      <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 32px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 24, marginBottom: 56 }}>
+          <div>
+            <div style={{ color: '#FF6B00', fontSize: 13, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', marginBottom: 16 }}>Cardápio</div>
+            <h2 style={{ fontFamily: "'Veneer', sans-serif", fontSize: 'clamp(46px,6.2vw,92px)', lineHeight: .95, textTransform: 'uppercase', margin: 0, color: '#F4EEE6' }}>
+              Muito além do<br />bom dog
+            </h2>
+          </div>
+          <button onClick={() => scrollTo('contato')}
+            style={{ background: 'transparent', color: '#FF6B00', border: '1.5px solid #FF6B00', fontWeight: 700, fontSize: 15, letterSpacing: '.03em', textTransform: 'uppercase', padding: '15px 28px', borderRadius: 4, cursor: 'pointer' }}
+            className="hover:bg-[#FF6B00] hover:text-[#1a1410] transition-colors">
+            Entre em contato
+          </button>
         </div>
 
-        <Carousel
-          opts={{ loop: false, align: "start" }}
-          className="w-full max-w-5xl mx-auto"
-        >
-          <CarouselContent className="-ml-4">
-            {products.map((product) => (
-              <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/3 pl-4">
-                <ProductCard product={product} />
-              </CarouselItem>
-            ))}
-
-            {/* Card "E muito mais" */}
-            <CarouselItem className="md:basis-1/2 lg:basis-1/3 pl-4">
-              <div className="p-1 h-full">
-                <div className="bg-zinc-900 rounded-2xl border border-zinc-800 shadow-sm flex flex-col items-center justify-center h-full min-h-[320px] text-center px-6 gap-5">
-                  <div className="w-14 h-14 rounded-full bg-orange-500/10 border border-orange-500/30 flex items-center justify-center">
-                    <span className="text-orange-400 text-2xl font-bold">+</span>
-                  </div>
-                  <div>
-                    <p className="text-white font-bold text-lg mb-1">E muito mais!</p>
-                    <p className="text-zinc-400 text-sm leading-relaxed">
-                      Nosso cardápio completo está disponível nas nossas unidades.
-                    </p>
-                  </div>
-                  <a
-                    href="https://pedido.anota.ai/loja/dogdavilaooriginal"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-200 hover:-translate-y-0.5"
-                  >
-                    Ver cardápio
-                    <ArrowRight className="w-4 h-4" />
-                  </a>
-                </div>
+        <div style={{ display: 'grid', gap: 24 }} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+          {difers.map(d => (
+            <div key={d.n} style={{ background: '#211810', border: '1px solid rgba(255,255,255,.08)', borderRadius: 8, overflow: 'hidden' }}>
+              <img src={d.img} alt={d.t} style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', objectPosition: 'center' }} />
+              <div style={{ padding: '24px 28px 28px' }}>
+                <div style={{ fontFamily: "'Veneer', sans-serif", fontSize: 38, color: 'rgba(255,107,0,.4)', lineHeight: 1, marginBottom: 10 }}>{d.n}</div>
+                <div style={{ fontFamily: "'Veneer', sans-serif", fontSize: 22, textTransform: 'uppercase', marginBottom: 10, color: '#F4EEE6' }}>{d.t}</div>
+                <p style={{ fontSize: 15.5, color: '#C9C0B6', lineHeight: 1.55, margin: 0 }}>{d.d}</p>
               </div>
-            </CarouselItem>
-          </CarouselContent>
-          <CarouselPrevious className="hidden sm:flex -left-4 md:-left-8 border-zinc-200 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-colors" />
-          <CarouselNext className="hidden sm:flex -right-4 md:-right-8 border-zinc-200 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-colors" />
-        </Carousel>
+            </div>
+          ))}
+        </div>
 
+        <div style={{ textAlign: 'center', marginTop: 40 }}>
+          <a href="https://pedido.anota.ai/loja/dogdavilaooriginal" target="_blank" rel="noopener noreferrer"
+            style={{ background: '#FF6B00', color: '#1a1410', textDecoration: 'none', fontWeight: 700, fontSize: 15, letterSpacing: '.03em', textTransform: 'uppercase', padding: '16px 32px', borderRadius: 4, display: 'inline-flex', alignItems: 'center', gap: 10 }}
+            className="hover:bg-[#ff8124] transition-colors">
+            Ver cardápio completo
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a1410" strokeWidth="2.5"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+          </a>
+        </div>
       </div>
     </section>
   );

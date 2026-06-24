@@ -1,49 +1,52 @@
-import { MapPinIcon, PhoneIcon, MailIcon, InstagramIcon } from 'lucide-react';
-
 const Footer = () => {
+  const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+
+  const links = [
+    { label: 'Nossa História', id: 'sobre-nos' },
+    { label: 'Cardápio', id: 'produtos' },
+    { label: 'Nossos mercados', id: 'mercados' },
+    { label: 'Seja um franqueado', id: 'franqueado' },
+    { label: 'Fale conosco', id: 'contato' },
+  ];
+
   return (
-    <footer className="bg-gray-900 text-white" translate="no">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Logo and about */}
-          <div>
-            <img src="/images/logo2.PNG" alt="Dog da Vila" className="h-20 mb-4" />
-            <p className="text-gray-400 mb-4">
-              Desde 2012, pensando em fazer o melhor para as pessoas. Buscando facilitar processos internos e se redescobrindo a cada dia como satisfazer a cada dia nossos clientes externos !!
-            </p>
-          </div>
+    <footer style={{ background: '#120C08', borderTop: '1px solid rgba(255,255,255,.07)', padding: '70px 0 30px' }}>
+      <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 24px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 22 }}>
+        <img src="/images/logo2.PNG" alt="Dog da Vila" style={{ height: 64 }} />
+        <p style={{ fontSize: 14.5, color: '#9A938B', lineHeight: 1.7, margin: 0 }}>
+          Hot dogs e hambúrgueres artesanais<br />
+          Feitos na hora · Molhos da casa<br />
+          Simplesmente diferente · Desde 2012
+        </p>
 
-          {/* Contact information */}
-          <div>
-            <h3 className="text-xl font-bold mb-4 text-orange-400">Unidades</h3>
-            <ul className="space-y-3 text-gray-400">
-              <li className="flex items-center">
-                <MapPinIcon className="w-5 h-5 mr-2 text-orange-500" />
-                <span>3 unidades em operação</span>
-            </li>
-             
-            
-            </ul>
-          </div>
+        <nav style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '14px 26px', marginTop: 4 }}>
+          {links.map(item => (
+            <button key={item.label} onClick={() => scrollTo(item.id)}
+              style={{ background: 'none', border: 0, cursor: 'pointer', color: '#C9C0B6', fontSize: 15, padding: 0 }}
+              className="hover:text-[#FF6B00] transition-colors">
+              {item.label}
+            </button>
+          ))}
+          <a href="https://www.instagram.com/dogdavilaofc/" target="_blank" rel="noopener noreferrer"
+            style={{ color: '#C9C0B6', textDecoration: 'none', fontSize: 15 }}
+            className="hover:text-[#FF6B00] transition-colors">
+            Vagas
+          </a>
+        </nav>
 
-         
-        
-          <div className="flex flex-col items-center md:items-start">
-            <h3 className="text-xl font-bold mb-4 text-orange-400">Siga-nos</h3>
-            <a 
-              href="https://www.instagram.com/dogdavilaofc/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="bg-orange-500 p-2 rounded-full hover:bg-orange-600 transition-colors"
-            >
-              <InstagramIcon className="w-5 h-5" />
-            </a>
-          </div>
-        </div>
+        <a href="https://www.instagram.com/dogdavilaofc/" target="_blank" rel="noopener noreferrer"
+          style={{ width: 40, height: 40, border: '1px solid rgba(255,255,255,.18)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#C9C0B6', textDecoration: 'none', fontSize: 12, fontWeight: 700 }}
+          className="hover:border-[#FF6B00] hover:text-[#FF6B00] transition-colors">
+          IG
+        </a>
+      </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} <span className="font-semibold text-orange-400">Dog da Vila</span>. Todos os direitos reservados.</p>
-        </div>
+      <div style={{ maxWidth: 1240, margin: '46px auto 0', padding: '24px 32px 0', borderTop: '1px solid rgba(255,255,255,.07)', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 14, fontSize: 13, color: '#6f675e' }}>
+        <span>© {new Date().getFullYear()} Dog da Vila — Todos os direitos reservados</span>
+        <span style={{ display: 'flex', gap: 22 }}>
+          <a href="#" style={{ color: '#6f675e', textDecoration: 'none' }} className="hover:text-[#FF6B00] transition-colors">Política de Privacidade</a>
+          <a href="#" style={{ color: '#6f675e', textDecoration: 'none' }} className="hover:text-[#FF6B00] transition-colors">Termos de Uso</a>
+        </span>
       </div>
     </footer>
   );
