@@ -8,13 +8,13 @@ const AboutSection = () => (
           Servindo o melhor dog
         </h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-          <div style={{ display: 'flex', gap: 20, alignItems: 'center', borderBottom: '1px solid rgba(0,0,0,.14)', paddingBottom: 22 }}>
-            <div style={{ fontFamily: "'Veneer', sans-serif", fontSize: 52, color: '#FF6B00', lineHeight: .85, minWidth: 160 }}>+24 mil</div>
-            <div style={{ fontSize: 17, color: '#4A4039', lineHeight: 1.45 }}>clientes atendidos todos os dias nas lojas Dog da Vila.</div>
+          <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-9" style={{ borderBottom: '1px solid rgba(0,0,0,.14)', paddingBottom: 22 }}>
+            <div style={{ fontFamily: "'Veneer', sans-serif", fontSize: 'clamp(40px,11vw,52px)', color: '#FF6B00', lineHeight: .85 }} className="whitespace-nowrap">Todo dia</div>
+            <div style={{ fontSize: 17, color: '#4A4039', lineHeight: 1.45 }}>clientes do bairro lotam as lojas Dog da Vila pra matar a vontade.</div>
           </div>
-          <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
-            <div style={{ fontFamily: "'Veneer', sans-serif", fontSize: 52, color: '#FF6B00', lineHeight: .85, minWidth: 160 }}>+9 mi</div>
-            <div style={{ fontSize: 17, color: '#4A4039', lineHeight: 1.45 }}>dogs e burgers vendidos, do clássico ao gourmet.</div>
+          <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-9">
+            <div style={{ fontFamily: "'Veneer', sans-serif", fontSize: 'clamp(40px,11vw,52px)', color: '#FF6B00', lineHeight: .85 }} className="whitespace-nowrap">Artesanal</div>
+            <div style={{ fontSize: 17, color: '#4A4039', lineHeight: 1.45 }}>dogs e burgers feitos na hora, do clássico ao gourmet.</div>
           </div>
         </div>
       </div>
