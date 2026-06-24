@@ -55,8 +55,8 @@ const MercadosSection = () => {
           <div style={{ position: 'relative', width: '100%', maxWidth: 440, aspectRatio: '1/1' }}>
             <div style={{ position: 'absolute', inset: '8%', background: 'radial-gradient(circle, rgba(255,107,0,.22) 0%, rgba(255,107,0,0) 65%)', filter: 'blur(6px)' }} />
             <img
-              src="/images/mapa-brasil-lines.png"
-              alt="Dog da Vila pelo Brasil"
+              src="/images/mapa-brasil-sp.png"
+              alt="Dog da Vila — 3 lojas em São Paulo"
               style={{
                 position: 'relative',
                 width: '100%',
@@ -65,15 +65,9 @@ const MercadosSection = () => {
                 opacity: .92,
               }}
             />
-            {/* São Paulo destacado em laranja (onde já operamos) */}
-            <div style={{ position: 'absolute', left: '67.5%', top: '72.5%', transform: 'translate(-50%,-50%)', zIndex: 2 }}>
-              <div style={{ position: 'relative', width: 58, height: 46 }}>
-                <div style={{ position: 'absolute', inset: '-45%', background: 'radial-gradient(circle, rgba(255,107,0,.5) 0%, rgba(255,107,0,0) 70%)', filter: 'blur(5px)' }} />
-                <div style={{ position: 'relative', width: '100%', height: '100%', background: '#FF6B00', borderRadius: '58% 42% 52% 48% / 56% 52% 48% 44%', boxShadow: '0 0 16px rgba(255,107,0,.8)', border: '1.5px solid rgba(255,255,255,.85)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span style={{ fontSize: 11, fontWeight: 800, color: '#1a1410', lineHeight: 1, letterSpacing: '.01em' }}>3 lojas</span>
-                </div>
-                <div style={{ position: 'absolute', bottom: 'calc(100% + 6px)', left: '50%', transform: 'translateX(-50%)', whiteSpace: 'nowrap', fontSize: 11.5, fontWeight: 700, color: '#F4EEE6', textShadow: '0 1px 4px rgba(0,0,0,.75)' }}>São Paulo</div>
-              </div>
+            {/* Etiqueta da unidade São Paulo (estado já pintado de laranja na imagem) */}
+            <div style={{ position: 'absolute', left: '67%', top: '57%', transform: 'translateX(-50%)', zIndex: 2, whiteSpace: 'nowrap', background: 'rgba(19,17,16,.92)', border: '1px solid rgba(255,107,0,.5)', borderRadius: 6, padding: '5px 11px', fontSize: 12.5, fontWeight: 700, color: '#F4EEE6', boxShadow: '0 4px 14px rgba(0,0,0,.5)' }}>
+              São Paulo · <span style={{ color: '#FF6B00' }}>3 lojas</span>
             </div>
           </div>
           <p style={{ color: '#9A938B', fontSize: 14, textAlign: 'center', margin: 0 }}>Já são 3 lojas em São Paulo — e expandindo pra todo o Brasil</p>
