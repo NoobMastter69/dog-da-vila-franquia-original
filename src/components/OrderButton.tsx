@@ -12,7 +12,16 @@ interface Loja {
 }
 
 const lojas: Loja[] = [
-  { name: 'Jd. Rosana', sub: 'Pirajussara, São Paulo - SP', url: 'https://pedido.anota.ai/loja/dogdavilaooriginal' },
+  {
+    name: 'Jd. Rosana',
+    sub: 'Pirajussara, São Paulo - SP',
+    options: [
+      { label: 'Pedir pelo iFood', url: 'https://www.ifood.com.br/delivery/sao-paulo-sp/hot-dog---dog-da-vila---o-original-pirajussara/f765192c-7257-41d7-89f7-b4b1a7158b3d?UTM_Medium=share', icon: 'ifood' },
+      { label: 'Pedir pela 99Food', url: 'https://oia.99app.com/dlp9/zVXlQk?area=BR', icon: '99' },
+      { label: 'Pedir e retirar na loja', url: 'https://pedido.anota.ai/loja/dogdavilaooriginal', icon: 'retirar' },
+      { label: 'Falar no WhatsApp', sub: '(11) 9 4089-0079', url: 'https://wa.me/5511940890079', icon: 'whats' },
+    ],
+  },
   {
     name: 'Jd. Independência',
     sub: 'Embu das Artes - SP',
